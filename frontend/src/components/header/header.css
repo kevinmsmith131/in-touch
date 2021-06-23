@@ -1,0 +1,43 @@
+.headerContainer {
+  height: 60px;
+  width: 100%;
+  background-color: rgb(4, 125, 240);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.homeButton {
+  margin-left: 21px;
+  cursor: pointer;
+}
+
+.homeButton:hover {
+  filter: brightness(85%);
+}
+
+.headerCenter {
+  margin-left: 630px;  
+  flex: 1;
+}
+
+.logo {
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(230, 230, 230);
+}
+
+.headerProPic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 21px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.headerProPic:hover {
+  filter: brightness(85%);
+}

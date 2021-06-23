@@ -1,0 +1,59 @@
+.followingbar {
+  flex: 3;
+  height: calc(100vh - 60px);
+  overflow-y: scroll;
+  position: sticky;
+  top: 60px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #dddbdb;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 179, 179);
+  border-radius: 10px;
+}
+
+.followingbarWrapper {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+.followingbarTitleWrapper {
+  background-color: #f0f2f5;
+  position: sticky;
+  padding-top: 10px;
+  top: 0;
+}
+
+.followingbarTitle {
+  font-size: x-large;
+  text-indent: 1em;
+  display: flex;
+  flex: 2;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.followeeLogo {
+  margin-left: 10px;
+  transform: scale(1.8);
+}
+
+.followingbarHr {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.followingbarFollowees {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

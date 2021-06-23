@@ -1,0 +1,103 @@
+.register {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerWrapper {
+  width: 70%;
+  height: 70%;
+  display: flex;
+}
+
+.registerLeft, .loginRight {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.registerLogo {
+  font-size: 50px;  
+  color: #156bdb;
+}
+
+.registerBox {
+  height: 450px;
+  width: 400px;
+  padding: 30px;
+  margin-right: 80px;
+  background-color: rgb(250, 250, 250);
+  -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40); 
+  box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.registerInput {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-size: 18px;
+  padding-left: 20px;
+}
+
+.registerInput:focus {
+  outline: none;
+}
+
+.registerButton {
+  height: 50px;
+  width: 400px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0b3b7a;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.registerButton:focus {
+  outline: none;
+}
+
+.registerButton:disabled {
+  cursor: none;
+}
+
+.registerButtonLogin {
+  display: flex;
+  height: 38px;
+  width: 250px;
+  padding-left: 150px;
+  padding-top: 11px;
+  border-radius: 10px;
+  border: none;
+  background-color: #156bdb;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.registerButtonLogin:focus {
+  outline: none;
+}
+
+.registerButtonLogin:disabled {
+  cursor: none;
+}

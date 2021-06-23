@@ -1,0 +1,100 @@
+.post {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40); 
+  box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40);
+}
+
+.postWrapper {
+  padding: 20px;
+}
+
+.postTop {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.postTopText {
+  display: flex;
+  flex-direction: column;
+}
+
+.postProPic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.postProPic:hover {
+  filter: brightness(85%);
+}
+
+.postUsername {
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.postUsername:hover {
+  text-decoration: underline;
+}
+
+.postDate {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.postCenter {
+  margin-top: 5px;
+  margin-bottom: 10px;  
+}
+
+.postContent {
+  margin-top: 10px;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.postBottom {
+  width: 7%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.likeButton {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.likeButton:hover {
+  filter: brightness(85%);
+}
+
+.postNumLikes {
+  font-size: 15px;
+  margin-top: 3px;
+  margin-left: 0;
+}
+
+
+
+

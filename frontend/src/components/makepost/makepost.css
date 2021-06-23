@@ -1,0 +1,141 @@
+.makepost {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40); 
+  box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40);
+}
+
+.makepostWrapper {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.makepostTop {
+  display: flex;
+  align-items: center;
+}
+
+.makepostProPic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.makepostProPic:hover {
+  filter: brightness(85%);   
+}
+
+.makepostInput {
+  text-indent: 1em;
+  font-size: 17px;
+  padding: 10px;
+  border: none;
+  width: 85%;
+  background-color: #f0f2f5;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+}
+
+.makepostInput:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.makepostInput:focus {
+  outline: none;
+}
+
+.makepostHr {
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 10px;
+  margin-top: 25px;
+}
+
+.makepostContentWrapper {
+  padding: 0, 20px, 10px, 20px;
+  position: relative;
+}
+
+.makepostContent {
+  width: 100%;
+  object-fit: cover;
+}
+
+.makepostContentCancel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #5d5f61
+}
+
+.makepostBottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.makepostOptions {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  position: relative;
+  justify-content: space-between;
+}
+
+.makepostOption {
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+}
+
+.makepostOption:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.makepostIcon {
+  font-size: 18px;
+  margin-right: 8px;
+  transform: scale(1.1);
+  margin-top: -2px;
+}
+
+.makepostOptionText {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(125, 125, 125);
+}
+
+.makepostPostButtonSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.makepostPostButton {
+    width: 80%;
+    height: 31px;
+    color: #f0f2f5;
+    background-color: rgb(4, 130, 240);
+    border-radius: 20px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    outline: none;
+  }
+
+.makepostPostButton:hover {
+  filter: brightness(85%);
+}
