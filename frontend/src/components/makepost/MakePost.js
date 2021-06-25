@@ -1,8 +1,8 @@
 import './makepost.css'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import CodeIcon from '@material-ui/icons/Code';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
-import InsertLinkIcon from '@material-ui/icons/InsertLink';
+import PersonIcon from '@material-ui/icons/Person';
+import PanoramaIcon from '@material-ui/icons/Panorama';
+import SubjectIcon from '@material-ui/icons/Subject';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { useContext, useRef, useState } from 'react';
 import { UserContext } from './../../context/UserContext';
@@ -15,10 +15,9 @@ const MakePost = ({ isHomepage }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const caption = useRef();
   const [file, setFile] = useState(null);
+  const [button, setButton] = useState('media');
 
-  const submitCallback = async (event) => {
-    event.preventDefault();
-    
+  const uploadMedia = async () => {
     const newPost = {
       userId: user._id,
       caption: caption.current.value
@@ -38,10 +37,68 @@ const MakePost = ({ isHomepage }) => {
     }
 
     try {
-      await axios.post('/posts', newPost);
-      window.location.reload();
+      if (file || caption.current.value) {
+        await axios.post('/posts', newPost);
+        window.location.reload();
+      } else {
+        alert('Cannot make an empty post');
+      }
     } catch(error) {
       logger.error(error);
+    }
+  };
+
+  const profileOrCover = async () => {
+    try {
+      if (file) {
+        const data = new FormData();
+        const filename = '/post/' + Date.now() + file.name;
+        data.append('name', filename);
+        data.append('file', file);
+        await axios.post('/upload', data);
+
+        const currUser = await axios.get('/users/', { params: { userId: user._id } });
+        let updatedUser = {};
+        if (button === 'coverPhoto') {
+          updatedUser = { ...currUser, coverPicture: filename };
+        } else {
+          updatedUser = { ...currUser, profilePicture: filename };
+        }
+
+        await axios.put(`/users/${user._id}`, updatedUser);
+        window.location.reload();
+      } else {
+        alert('Cannot update without a picture');
+      }
+    } catch(error) {
+      logger.error(error);
+    }
+  };
+
+  const bio = async () => {
+    try {
+      if (caption.current.value) {
+        const currUser = await axios.get('/users/', { params: { userId: user._id } });
+        const updatedUser = { ...currUser, bio: caption.current.value };
+        await axios.put(`/users/${user._id}`, updatedUser);
+        window.location.reload();
+      }
+    } catch(error) {
+      logger.error(error);
+    }
+  };
+
+  const submitCallback = event => {
+    event.preventDefault();
+  
+    if (button === 'media') {
+      uploadMedia();
+    } else if (button === 'profilePic' || button === 'coverPhoto') {
+      profileOrCover();
+    } else if (button === 'bio') {
+      bio();
+    } else {
+      logger.error('Invalid button press received');
     }
   };
 
@@ -82,37 +139,65 @@ const MakePost = ({ isHomepage }) => {
         <form onSubmit={submitCallback}>
           <div className="makepostBottom">
             <div className="makepostOptions">
-              <label className="makepostOption" htmlFor="file">
+              <label className="makepostOption" htmlFor="media" onClick={() => setButton('media')}>
                 <AddPhotoAlternateIcon className="makepostIcon" htmlColor="rgb(206, 33, 55)"/>
-                <span className="makepostOptionText">Photo/Video</span>
+                <span className="makepostOptionText">Media</span>
                 <input 
                   type="file" 
                   style={{ display: "none" }}
-                  id="file" 
+                  id="media" 
                   accept=".png, .jpg, .jpeg, .mov, .mp4" 
                   onChange={event => setFile(event.target.files[0])}
                 />
               </label>            
-              <label className="makepostOption" htmlFor="file">
-                <CodeIcon className="makepostIcon" htmlColor="rgb(0, 180, 0)"/>
-                <span className="makepostOptionText">Code</span>
+              <label 
+                className="makepostOption" 
+                htmlFor="proPic"
+                onClick={
+                  () => {
+                    setButton('profilePic');
+                    alert('Select the photo you wish to be your new profile picture, then click post, like you are making a normal post.');
+                  }
+                }>
+                <PersonIcon className="makepostIcon" htmlColor="rgb(0, 102, 204"/>
+                <span className="makepostOptionText">Profile Picture</span>
                 <input 
                   type="file" 
                   style={{ display: "none" }}
-                  id="file" 
-                  accept=".py, .js, .ts, .java, .c, .h, .cpp, .cs, .php, .sh, .swift, .vb, .cs, .cgi, .pl, .htm, .html, .css, .xml, .xhtml"
+                  id="proPic" 
+                  accept=".png, .jpg, .jpeg" 
                   onChange={event => setFile(event.target.files[0])}
                 />
               </label>
-              <label className="makepostOption" htmlFor="file">
-                <InsertLinkIcon className="makepostIcon" htmlColor="rgb(0, 102, 204)"/>
-                <span className="makepostOptionText">Link</span>
-                <input type="url" style={{ display: "none" }} id="file" onChange={event => setFile(event.target.files[0])}/>
+              <label 
+                className="makepostOption" 
+                htmlFor="cover" 
+                onClick={
+                  () => {
+                    setButton('coverPhoto');
+                    alert('Select the photo you wish to be your new cover photo, then click post, like you are making a normal post.');
+                  }
+                }>
+                <PanoramaIcon className="makepostIcon" htmlColor="rgb(0, 180, 0)"/>
+                <span className="makepostOptionText">Cover Photo</span>
+                <input 
+                  type="file" 
+                  style={{ display: "none" }} 
+                  id="cover" 
+                  accept=".png, .jpg, .jpeg" 
+                  onChange={event => setFile(event.target.files[0])}
+                />
               </label>
-              <label className="makepostOption" htmlFor="file">
-                <AttachFileIcon className="makepostIcon" htmlColor="rgb(140, 140, 140)"/>
-                <span className="makepostOptionText">File</span>
-                <input type="file" style={{ display: "none" }} id="file" onChange={event => setFile(event.target.files[0])}/>
+              <label 
+                className="makepostOption" 
+                onClick={
+                  () => { 
+                    setButton('bio'); 
+                    alert('Write your new bio in the text input area, as if you were writing a caption, then press post.'); 
+                  }
+                }>
+                <SubjectIcon className="makepostIcon" htmlColor="rgb(245, 176, 66)"/>
+                <span className="makepostOptionText">Bio</span>
               </label>
             </div>
           </div>

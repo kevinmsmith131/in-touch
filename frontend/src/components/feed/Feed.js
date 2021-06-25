@@ -9,6 +9,7 @@ import EventBusyIcon from '@material-ui/icons/EventBusy';
 const Feed = ({ username, isHomepage }) => {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
+  const feedWrapper = isHomepage ? "homeFeedWrapper" : "profileFeedWrapper";
 
   useEffect(() => {
     const getPosts = async () => {
@@ -22,12 +23,10 @@ const Feed = ({ username, isHomepage }) => {
 
   return (
     <div className="feed">
-      <div className="feedWrapper">
+      <div className={feedWrapper}>
         {(username === user.username || username === user.userName) && <MakePost isHomepage={isHomepage} />}
         {posts.length === 0
-          ? 
-            
-            <div className="noPosts">
+          ? <div className="noPosts">
               <EventBusyIcon className="noPostIcon" fontSize="large" />
               No Posts Yet  
             </div>

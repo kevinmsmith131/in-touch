@@ -1,23 +1,31 @@
 import './header.css';
-import HomeIcon from '@material-ui/icons/Home';   
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';  
 import { Link } from 'react-router-dom';  
 import { useContext } from 'react';
 import { UserContext } from './../../context/UserContext';
+import { LoginSuccess } from './../../context/UserActions';
 
 const Header = ({ isHomepage, username }) => {
-  const { user } = useContext(UserContext);
+  const { user, dispatch } = useContext(UserContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const logout = () => {
+    dispatch(LoginSuccess(null));
+    localStorage.clear();
+  };
 
   return (
     <div className="headerContainer">
       <div className="headerLeft"/>
-        <div className="homeButton">
+        <button className="logoutButton" onClick={logout}>
           <Link to="/">
-            <HomeIcon htmlColor="rgb(230, 230, 230)"/>
+            <ExitToAppIcon className="logoutButtonLogo" />
           </Link>
-        </div>
+        </button>
       <div className="headerCenter">
-        <span className="logo">InTouch</span>
+        <Link to ="/">
+          <span className="logo">InTouch</span>
+        </Link>
       </div>
       <div className="headerRight">
         {(isHomepage || user.username !== username)

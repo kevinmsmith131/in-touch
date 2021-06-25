@@ -1,41 +1,42 @@
 import './register.css';
-import { useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
-import { useContext } from 'react';
 import { UserContext } from './../../context/UserContext';
-import { LoginStart } from './../../context/UserActions';
+import { LoginSuccess } from './../../context/UserActions';
 
 const Register = () => {
+  const [waiting, setWaiting] = useState(false);
+  const { dispatch } = useContext(UserContext)
   const username = useRef();
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
-  const { isRetrieving, dispatch } = useContext(UserContext);
 
   const handleClick = async event => {
     event.preventDefault();
-    dispatch(LoginStart());
+    setWaiting(true);
 
-    const refresh = () => {
-      window.location.reload();
-    };
+    const refresh = () => window.location.reload();
 
     if (password.current.value !== confirmPassword.current.value) {
       confirmPassword.current.setCustomValidity('Passwords do not match');
-      setTimeout(refresh, 3000);
+      setWaiting(false);
     } else {
       const user = {
         username: username.current.value,
-        email: email.current.value,
+        email: email.current.value.toLowerCase(),
         password: password.current.value
       };
 
       try {
-        await axios.post('auth/register', user);
+        const currUser = await axios.post('auth/register', user);
+        dispatch(LoginSuccess(currUser.data));
+        setWaiting(false);
       } catch(error) {
-        email.current.setCustomValidity('There is already a user with these credentials. Use Login Page for logging in.');
+        alert('There is already a user with these credentials. Use Login Page for logging in.');
+        setWaiting(false);
         setTimeout(refresh, 3000);
       }
     }
@@ -54,14 +55,14 @@ const Register = () => {
             <input className="registerInput" placeholder="Username" ref={username} required/>
             <input className="registerInput" placeholder="Password" type="password" ref={password} minLength="5" required/>
             <input className="registerInput" placeholder="Confirm Password" type="password" ref={confirmPassword} minLength="5" required/>
-            <button className="registerButton" type="submit" disabled={isRetrieving}>
-              {isRetrieving 
+            <button className="registerButton" type="submit" disabled={waiting}>
+              {waiting
                 ? <CircularProgress color="white" size="20px" />
                 : "Create Account"
               }
             </button>
             <Link to="/login">
-              <div className="registerButtonLogin" disabled={isRetrieving}>
+              <div className="registerButtonLogin" disabled={waiting}>
                 Login Page
               </div>
             </Link>

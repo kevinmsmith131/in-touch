@@ -9,12 +9,22 @@
   z-index: 999;
 }
 
-.homeButton {
+.logoutButton {
   margin-left: 21px;
   cursor: pointer;
+  border: none;
+  background-color: rgb(4, 125, 240);
 }
 
-.homeButton:hover {
+.logoutButton:focus {
+  outline: none;
+}
+
+.logoutButtonLogo {
+  color: rgb(230, 230, 230);
+}
+
+.logoutButtonLogo:hover {
   filter: brightness(85%);
 }
 
@@ -27,6 +37,15 @@
   font-size: 35px;
   font-weight: 500;
   color: rgb(230, 230, 230);
+  border: none;
+}
+
+.logo:focus {
+  outline: none;
+}
+
+.logo:hover {
+  filter: brightness(85%)
 }
 
 .headerProPic {
@@ -36,6 +55,10 @@
   margin-right: 21px;
   object-fit: cover;
   cursor: pointer;
+}
+
+.headerProPic:focus {
+  outline: none;
 }
 
 .headerProPic:hover {

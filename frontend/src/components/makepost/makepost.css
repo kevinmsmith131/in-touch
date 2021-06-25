@@ -16,6 +16,8 @@
 .makepostTop {
   display: flex;
   align-items: center;
+  margin-left: 26px;
+  width: 91%;
 }
 
 .makepostProPic {
@@ -85,7 +87,7 @@
 .makepostOptions {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 90%;
   position: relative;
   justify-content: space-between;
 }

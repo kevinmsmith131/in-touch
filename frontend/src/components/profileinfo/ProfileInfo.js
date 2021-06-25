@@ -2,6 +2,7 @@ import './profileinfo.css';
 import WorkIcon from '@material-ui/icons/Work';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SchoolIcon from '@material-ui/icons/School';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import axios from 'axios';
@@ -47,6 +48,37 @@ const ProfileInfo = ({ user }) => {
     setFollowed(!followed);
   };
 
+  const setInfo = async field => {
+    try {
+      let input = prompt('Enter your ' + field + '. There is a 40 character limit to keep information to the point.');
+      if (input.length > 40) {
+        field = field.charAt(0).toUpperCase() + field.slice(1);
+
+        input = field + ' unspecified';
+        alert(field + ' input exceeded 40 character limit. ' + field + ' set to unspecified.');
+
+        field = field.charAt(0).toLowerCase() + field.slice(1);
+      }
+
+      const currUser = await axios.get('/users/', { params: { userId: user._id } });
+      let updatedUser = {};
+      if (field === 'location') {
+        updatedUser = { ...currUser, location: input };
+      } else if (field === 'job') {
+        updatedUser = { ...currUser, job: input };
+      } else if (field === 'education') {
+        updatedUser = { ...currUser, education: input };
+      } else {
+        logger.error('Invalid user information field selected');
+      }
+
+      await axios.put(`/users/${user._id}`, updatedUser);
+      window.location.reload();
+    } catch(error) {
+      logger.error(error);
+    }
+  };
+
   return (
     <div className='profileinfo'>
       <div className="profileinfoItem">
@@ -68,37 +100,52 @@ const ProfileInfo = ({ user }) => {
         <div className="profileinfoMain">
           <h4 className="profileinfoTitle">Information</h4>
           <div className="profileinfoPair">
-            <LocationOnIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
-            <span className="profileinfoValue">{user.location}</span>
+            {currentUser._id === user._id 
+              ? <LocationOnIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={() => setInfo('location')} />
+              : <LocationOnIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
+             }
+            <span className="profileinfoValue">{user.location ? user.location : 'Location unspecified'}</span>
           </div>
           <div className="profileinfoPair">
-            <WorkIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
-            <span className="profileinfoValue">{user.job}</span>
+            {currentUser._id === user._id
+              ? <WorkIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={() => setInfo('job')} />
+              : <WorkIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
+            }
+            <span className="profileinfoValue">{user.job ? user.job : 'Job unspecified'}</span>
           </div>
           <div className="profileinfoPair">
-            <SchoolIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
-            <span className="profileinfoValue">{user.education}</span>
+            {currentUser._id === user._id
+              ? <SchoolIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={() => setInfo('education')} />
+              : <SchoolIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
+            }
+            <span className="profileinfoValue">{user.education ? user.education : 'Education unspecified'}</span>
           </div>
         </div>
         <div className="profileinfoFollowing">
           <h4 className="profileinfoTitle">Followers</h4>
-          <div className="profileinfoFollowingList">
-            {followedUsers.map(followedUser => 
-                ( 
-                  <Link to={`/profile/${followedUser.username}`} style={{ textDecoration: "none" }}>
-                    <div className="profileinfoFollowee">
-                      <img 
-                        className="profileinfoFolloweeProPic" 
-                        src={followedUser.profilePicture ? PF + followedUser.profilePicture : PF + '/user/defaultAvatar.jpg'} 
-                        alt=""
-                      />
-                      <span className="profileinfoFolloweeUsername">{followedUser.username}</span>
-                    </div>
-                  </Link>
-                )
-              )
-            }
-          </div>
+          {followedUsers.length === 0 
+            ? <div className="noUsersFollowed">
+                <PersonOutlineIcon className="noUsersFollowedIcon" fontSize="large" />
+                No Followers
+              </div>
+            : <div className="profileinfoFollowingList">
+                {followedUsers.map(followedUser => 
+                    ( 
+                      <Link key={followedUser.username} to={`/profile/${followedUser.username}`} style={{ textDecoration: "none" }}>
+                        <div className="profileinfoFollowee">
+                          <img 
+                            className="profileinfoFolloweeProPic" 
+                            src={followedUser.profilePicture ? PF + followedUser.profilePicture : PF + '/user/defaultAvatar.jpg'} 
+                            alt=""
+                          />
+                          <span className="profileinfoFolloweeUsername">{followedUser.username}</span>
+                        </div>
+                      </Link>
+                    )
+                  )
+                }
+              </div>
+          }
         </div>
       </div>
     </div>

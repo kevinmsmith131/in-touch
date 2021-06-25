@@ -2,7 +2,15 @@
   flex:5.5;
 }
 
-.feedWrapper{
+.homeFeedWrapper{
+  padding: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 80%;
+}
+
+.profileFeedWrapper{
   padding: 20px;
   left: 0;
   right: 0;
@@ -25,7 +33,4 @@
   margin-top: 15%;
   align-items: center;
   justify-content: center;
-  top: 350px;
-  position: sticky;
-  z-index: 999;
 }

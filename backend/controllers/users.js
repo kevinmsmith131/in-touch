@@ -51,7 +51,7 @@ router.get('/followers/:userId', async (request, response, next) => {
 router.put('/:id', async (request, response, next) => {
   try {
     // Check the user is updating their own account
-    if (request.body.userId === request.params.id) {
+    if (request.body.userId === request.query._id) {
       // If the user is updating their password, generate a hashed updated password
       if (request.body.password) {
           const salt = await bcrypt.genSalt(10);

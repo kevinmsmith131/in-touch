@@ -1,4 +1,4 @@
-.followingbar {
+#followingbar {
   flex: 3;
   height: calc(100vh - 60px);
   overflow-y: scroll;
@@ -39,7 +39,14 @@
   display: flex;
   flex: 2;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.followingbarTitle:hover {
+  background-color: rgb(220, 220, 220);
 }
 
 .followeeLogo {
@@ -48,7 +55,6 @@
 }
 
 .followingbarHr {
-  margin-top: 20px;
   margin-bottom: 30px;
 }
 
@@ -56,4 +62,16 @@
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.noUsersFollowing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+  padding-bottom: 100px;
+  margin-right: 20px;
+  color: #6e6a6a;
+  font-size: 30px;
+  font-weight: 500;
 }

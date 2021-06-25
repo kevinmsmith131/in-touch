@@ -24,6 +24,21 @@
   margin-right: 15px;
 }
 
+.profileinfoKeySelf {
+  font-weight: 500;
+  margin-right: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.profileinfoKeySelf:hover {
+  filter: brightness(150%);
+}
+
+.profileinfoKeySelf:focus {
+  outline: none;
+}
+
 .profileinfoValue {
   font-weight: 400;
   color: rgb(90, 90, 90);
@@ -164,4 +179,16 @@
 
 .profileinfoFolloweeUsername:hover {
   text-decoration: underline;
+}
+
+.noUsersFollowed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  padding-bottom: 100px;
+  margin-right: 20px;
+  color: #6e6a6a;
+  font-size: 30px;
+  font-weight: 500;
 }
