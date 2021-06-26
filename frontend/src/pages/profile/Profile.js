@@ -47,7 +47,7 @@ const Profile = () => {
           } else if (field === 'username') {
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
             const newName = result.data.name;
-            dispatch(LoginSuccess({ ...currentUser, username: newName }))
+            dispatch(LoginSuccess({ ...currentUser, username: newName }));
             window.location.replace(`http://localhost:3000/profile/${newName}`);
           } else if (field === 'password' && updatedField.length >= 5) {
             await axios.put(`/users/password/${user._id}`, { data: { ...oldProfile, password: updatedField } });

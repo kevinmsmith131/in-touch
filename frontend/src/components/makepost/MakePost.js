@@ -4,7 +4,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import PanoramaIcon from '@material-ui/icons/Panorama';
 import SubjectIcon from '@material-ui/icons/Subject';
 import CancelIcon from '@material-ui/icons/Cancel';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { UserContext } from './../../context/UserContext';
 import { LoginSuccess } from './../../context/UserActions';
 import { Link } from 'react-router-dom';
@@ -67,7 +67,7 @@ const MakePost = ({ isHomepage }) => {
         }
 
         await axios.put(`/users/${user._id}`, updatedUser);
-        dispatch(LoginSuccess(user));
+        dispatch(LoginSuccess(updatedUser));
         window.location.reload();
       } else {
         alert('Cannot update without a picture');
