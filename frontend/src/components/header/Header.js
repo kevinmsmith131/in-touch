@@ -12,6 +12,7 @@ const Header = ({ isHomepage, username }) => {
   const logout = () => {
     dispatch(LoginSuccess(null));
     localStorage.clear();
+    window.location.replace('http://localhost:3000/register');
   };
 
   return (

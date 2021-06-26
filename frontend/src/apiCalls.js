@@ -4,7 +4,7 @@ import { LoginStart, LoginFailure, LoginSuccess } from './context/UserActions';
 export const loginCall = async (userCredentials, dispatch) => {
   dispatch(LoginStart());
   try {
-    const response = await axios.post('auth/login', {
+    const response = await axios.post('/auth/login', {
       email: userCredentials.email.current.value.toLowerCase(),
       password: userCredentials.password.current.value
     });

@@ -22,7 +22,7 @@ router.put('/:id', async (request, response, next) => {
     if (post.userId === request.body.userId) {
       // Update the post with the new contents in the database
       await post.updateOne({ $set: request.body });
-      resonse.status(200).json('Successfully edited post');
+      response.status(200).json('Successfully edited post');
     } else {
       response.status(403).json('Not authorized to edit this post');
     }
@@ -39,7 +39,7 @@ router.delete('/:id', async (request, response, next) => {
     if (post.userId === request.body.userId) {
       // Delete the post from the database
       await post.deleteOne();
-      resonse.status(200).json('Successfully deleted post');
+      response.status(200).json('Successfully deleted post');
     } else {
       response.status(403).json('Not authorized to delete this post');
     }

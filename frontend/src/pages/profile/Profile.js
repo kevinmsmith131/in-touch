@@ -3,15 +3,24 @@ import Header from './../../components/header/Header';
 import FollowingBar from './../../components/followingbar/FollowingBar';
 import Feed from './../../components/feed/Feed';
 import ProfileInfo from './../../components/profileinfo/ProfileInfo';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from './../../context/UserContext';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import EmailIcon from '@material-ui/icons/Email';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import LockIcon from '@material-ui/icons/Lock';
+import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { LoginSuccess } from './../../context/UserActions';
 import logger from '../../utils/logger';
 
 const Profile = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
+  const [dropdown, setDropdown] = useState(false);
   const username = useParams().username;
+  const { user: currentUser, dispatch } = useContext(UserContext);
 
   useEffect(() => {
     const getUser = async () => {
@@ -25,22 +34,85 @@ const Profile = () => {
     getUser();
   }, [username]);
 
+  const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const editProfile = async field => {
+      const updatedField = prompt('Enter your new ' + field + '.');
+      const confirmation = prompt('Enter Y to confirm or N to cancel. Casing does not matter.')?.toLowerCase();
+      if (confirmation === 'y') {
+        try {
+          const oldProfile = await axios.get(`/users?username=${username}`);
+          if (field === 'email' && isValidEmail(updatedField)) {
+            await axios.put(`/users/email/${user._id}`, { data: { ...oldProfile, email: updatedField } });
+          } else if (field === 'username') {
+            const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
+            const newName = result.data.name;
+            dispatch(LoginSuccess({ ...currentUser, username: newName }))
+            window.location.replace(`http://localhost:3000/profile/${newName}`);
+          } else if (field === 'password' && updatedField.length >= 5) {
+            await axios.put(`/users/password/${user._id}`, { data: { ...oldProfile, password: updatedField } });
+          } else {
+            alert(`Invalid ${field}. Passwords must be at least 5 characters and emails must be in valid format.`);
+            return;
+          }
+          alert(`${field} successfully changed.`);
+        } catch(error) {
+          logger.error(error);
+        }
+      }
+  };
+
+  const deleteAccount = async () => {
+    const confirmation = prompt('Enter Y to confirm or N to cancel. Casing does not matter.')?.toLowerCase();
+    if (confirmation === 'y') {
+      try {
+        await axios.delete(`/users/${currentUser._id}`, { data: currentUser });
+        localStorage.clear();
+        window.location.replace('http://localhost:3000/register');
+        dispatch(LoginSuccess(null));
+      } catch(error) {
+        logger.error(error);
+      }
+    }
+  };
+
   return (
     <>
       <Header isHomepage={false} username={username} />
       <div className="profile">
         <FollowingBar user={user}/>
         <div className="profileRight">
-            <div className="profileCover">
+          <div className="profileCover">
               <img className="profileCoverPic" src={user.coverPicture ? PF + user.coverPicture : PF + '/user/defaultCover.png'} alt=""/>
               <img className="profileProPic" src={user.profilePicture ? PF + user.profilePicture : PF + '/user/defaultAvatar.jpg'} alt=""/>
+          </div>
+          {dropdown && 
+            <div className="profileDropdown triangle">
+              <div className="profileDropdownEntry" onClick={() => editProfile('email')}>
+                <EmailIcon className="profileDropdownEdit" />
+                <span className="profileDropdownEdit">Change Email</span>
+              </div>
+              <div className="profileDropdownEntry" onClick={() => editProfile('username')}>
+                <AssignmentIndIcon className="profileDropdownEdit" />
+                <span className="profileDropdownEdit">Change Username</span>
+              </div>
+              <div className="profileDropdownEntry" onClick={() => editProfile('password')}>
+                <LockIcon className="profileDropdownEdit" />
+                <span className="profileDropdownEdit">Change Password</span>
+              </div>
+              <div className="profileDropdownEntry" onClick={() => deleteAccount()}>
+                <DeleteIcon className="profileDropdownDelete" />
+                <span className="profileDropdownDelete">Delete Account</span>
+              </div>
             </div>
-            <div className="profileInfo">
-              <a href="#top">
-                <h4 className="profileInfoName">{user.username}</h4>
-              </a>
-              <span className="profileInfoBio">{user.bio}</span>
-            </div>
+          }
+          <div className="profileInfo">
+            <a href="#top">
+              <h4 className="profileInfoName">{user.username}</h4>
+            </a>
+            <span className="profileInfoBio">{user.bio}</span>
+            {user?._id === currentUser?._id && <MoreHorizIcon className="profileOptions" onClick={() => setDropdown(!dropdown)} />}
+          </div>
           <div className="profileRightBottom">
             <Feed username={username} isHomepage={false}/>
             <ProfileInfo user={user}/> 

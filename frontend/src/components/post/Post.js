@@ -3,6 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from './../../context/UserContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import logger from './../../utils/logger';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 TimeAgo.locale(en)
@@ -12,8 +16,11 @@ const Post = ({ post, isHomepage }) => {
   const [numLikes, setNumLikes] = useState(post.likes.length);
   const [user, setUser] = useState({});
   const [isLiked, setIsLiked] = useState(false);
+  const [dropdown, setDropdown] = useState(false);  
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(UserContext);
+  const dropdownName = isHomepage ? 'postDropdownHome': 'postDropdownProfile';
+  const widgetName = isHomepage ? 'postDropdownWidgetHome' : 'postDropdownWidgetProfile';
 
   useEffect(() => {
     const getUser = async () => {
@@ -37,6 +44,35 @@ const Post = ({ post, isHomepage }) => {
     setIsLiked(!isLiked);
   };
 
+  const editPost = async () => {
+    const updatedCaption = prompt('Enter the new caption for the post.');
+    const confirmation = prompt('Enter Y to confirm or anything else to cancel. Casing does not matter.')?.toLowerCase();
+
+    if (confirmation === 'y') {
+      try {
+        const updatedPost = { ...post, caption: updatedCaption };
+        await axios.put(`/posts/${post._id}`, updatedPost);
+        window.location.reload();
+      } catch(error) {
+        logger.error(error);
+      }
+    }
+  }
+
+  const deletePost = async () => {
+    const confirmation = prompt('Enter Y to confirm or anything else to cancel. Casing does not matter.')?.toLowerCase();
+
+    if (confirmation === 'y') {
+      try {
+        await axios.delete(`/posts/${post._id}`, { data: post });
+        window.location.reload();
+      } catch(error) {
+        logger.error(error);
+      }
+    }
+
+  };
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -58,12 +94,34 @@ const Post = ({ post, isHomepage }) => {
                   <span className="postUsername">{user.username}</span>
                 </a>
             }
-            <span className="postDate">{timeAgo.format(Date.now() - (Date.now() -new Date(post.createdAt).getTime()), 'mini-now')}</span>
+          <span className="postDate">{timeAgo.format(Date.now() - (Date.now() -new Date(post.createdAt).getTime()), 'mini-now')}</span>
           </div>
+          {dropdown &&
+            <>
+              <div className={dropdownName}>
+                <div className="postDropdownEntry" onClick={() => editPost()}>
+                  <EditIcon className="postDropdownEdit" />
+                  <span className="postDropdownEdit">Edit Caption</span>
+                </div>
+                <div className="postDropdownEntry" onClick={() => deletePost()}>
+                  <DeleteIcon className="postDropdownDelete" />
+                  <span className="postDropdownDelete">Delete Post</span>
+                </div>
+              </div>
+              <div className={widgetName}/>
+            </>
+          }
+          {post?.userId === currentUser?._id 
+            && <MoreHorizIcon 
+                 className="postOptions" 
+                 style={{ marginLeft : isHomepage ? '80%' : '75%' }} 
+                 onClick={() => setDropdown(!dropdown)}
+               />
+          }
         </div>
         <span className="postCaption">{post?.caption}</span>
         <div className="postCenter">
-          <img className="postContent" src={PF + post.content} alt=""/>
+          <img className="postContent" src={PF + post?.content} alt=""/>
         </div>
         <div className="postBottom">
           <img className="likeButton" src={`${PF}/likeButton.png`} onClick={likeCallback}alt=""/>

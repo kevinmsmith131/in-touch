@@ -9,7 +9,7 @@ import EventBusyIcon from '@material-ui/icons/EventBusy';
 const Feed = ({ username, isHomepage }) => {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
-  const feedWrapper = isHomepage ? "homeFeedWrapper" : "profileFeedWrapper";
+  const feedWrapper = isHomepage || posts.length > 0 || username === user.username ? "homeFeedWrapper" : "profileFeedWrapper";
 
   useEffect(() => {
     const getPosts = async () => {
@@ -19,7 +19,7 @@ const Feed = ({ username, isHomepage }) => {
       setPosts(response.data.sort((p1, p2) => new Date(p2.createdAt) - new Date(p1.createdAt)));
     }
     getPosts();
-  }, [username, user._id]);
+  }, [username, user]);
 
   return (
     <div className="feed">

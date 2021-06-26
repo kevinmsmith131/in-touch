@@ -61,6 +61,123 @@ a:visited {
   margin-top: 5px;
 }
 
+.postDropdownHome {
+  -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40); 
+  box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40);
+  border-radius: 5px;
+  height: 50px;
+  width: 150px;
+  background-color: white;
+  margin-top: 20px;
+  display: block;
+  position: absolute;
+  left: 76.7%;
+  padding: 5px;
+}
+
+.postDropdownProfile {
+  -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40); 
+  box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.40);
+  border-radius: 5px;
+  height: 50px;
+  width: 150px;
+  background-color: white;
+  display: block;
+  position: absolute;
+  left: 56%;
+  padding: 5px;
+}
+
+.postDropdownEntry {
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  text-indent: 5px;
+}
+
+.postDropdownWidgetHome:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 13px solid rgba(0, 0, 0, 0.1);
+  border-right: 13px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: 87.075%;
+}
+
+.postDropdownWidgetHome:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 13px solid #fff;
+  border-right: 13px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: 87%;
+}
+
+.postDropdownWidgetProfile:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 13px solid rgba(0, 0, 0, 0.1);
+  border-right: 13px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: 82.2%;
+}
+
+.postDropdownWidgetProfile:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 13px solid #fff;
+  border-right: 13px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: 82.05%;
+}
+
+.postDropdownEntry:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.postDropdownEdit {
+  color: rgb(80, 80, 80);
+  border-radius: 5px;
+}
+
+.postDropdownDelete {
+  color: #da1010;
+  border-radius: 5px;
+}
+
+.postOptions {
+  color: #5e5b5b;
+  cursor: pointer;
+  font-size: xx-large;
+  border-radius: 50%;
+  padding: 5px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.postOptions:focus {
+  outline: none;
+}
+
+.postOptions:hover {
+  background-color: rgb(235, 235, 235);
+}
+
 .postCenter {
   margin-top: 5px;
   margin-bottom: 10px;  

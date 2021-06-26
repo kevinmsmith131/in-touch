@@ -11,7 +11,7 @@ const FollowingBar = ({ user }) => {
   useEffect(() => {
     const getUsers = async () => {
       const followingUsers = await axios.get('/users/following/' + user._id);
-      setFollowees(followingUsers.data);
+      setFollowees(followingUsers.data.filter(u => u !== null && u !== undefined));
     }
     getUsers();
   }, [user]);

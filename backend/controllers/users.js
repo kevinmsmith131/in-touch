@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('./../models/User');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
 // Get a user
 router.get('/', async (request, response, next) => {
@@ -12,8 +13,7 @@ router.get('/', async (request, response, next) => {
     const user = userId 
       ? await User.findById(userId) 
       : await User.findOne({ username: username });
-    const { password, ...other } = user._doc;
-    response.status(200).json(other);
+    response.status(200).json(user);
   } catch(error) {
     next(error);
   }
@@ -47,37 +47,108 @@ router.get('/followers/:userId', async (request, response, next) => {
   }
 });
 
-// Edit an account
-router.put('/:id', async (request, response, next) => {
+// Remove an account
+router.delete('/:id', async (request, response, next) => {
   try {
-    // Check the user is updating their own account
-    if (request.body.userId === request.query._id) {
-      // If the user is updating their password, generate a hashed updated password
-      if (request.body.password) {
-          const salt = await bcrypt.genSalt(10);
-          request.body.password = bcrypt.hash(request.body.password, salt);
-      }
-      // Make all other requested updates
-      const user = await User.findByIdAndUpdate(request.params.id, { $set: request.body });
+    // Check the user is deleting their own account
+    if (request.body._id === request.params.id) {
+      // Delete the account 
+      const user = await User.findByIdAndDelete(request.params.id);
       response.status(200).json(user);
     } else {
-      response.status(403).json('Not authorized to update this account');
+      response.status(403).json('Not authorized to delete this account');
     }
   } catch(error) {
     next(error);
   }
 });
 
-// Remove an account
-router.delete('/:id', async (request, response, next) => {
+// Update a user
+router.put("/:id", async (request, response) => {
+  if (request.body._id === request.query.id) {
+    try {
+      const user = await User.findByIdAndUpdate(request.params.id, {
+        $set: request.body,
+      });
+      response.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    response.status(403).json("User not authorized to update account");
+  }
+});
+
+// Edit an account email
+router.put("/email/:id", async (request, response) => {
+  if (request.body.data.data._id === request.params.id) {
+      try {
+        mongoose.set('useFindAndModify', false);
+        const user = await User.findByIdAndUpdate(
+          request.params.id, 
+          { ...request.body.data.data, email: request.body.data.email } 
+        );
+        response.status(200).json(user);
+      } catch (error) {
+        logger.error(error);
+      }
+  } else {
+    response.status(403).json("User not authorized to update account");
+  }
+});
+
+// Edit an account username
+router.put("/username/:id", async (request, response) => {
+  if (request.body.data.data._id === request.params.id) {
+      try {
+        mongoose.set('useFindAndModify', false);
+        await User.findByIdAndUpdate(
+          request.params.id, 
+          { ...request.body.data.data, username: request.body.data.username } 
+        );
+        response.status(200).json({ name: request.body.data.username });
+      } catch (error) {
+        logger.error(error);
+      }
+  } else {
+    response.status(403).json("User not authorized to update account");
+  }
+});
+
+// Edit an account password
+router.put('/password/:id', async (request, response, next) => {
   try {
-    // Check the user is deleting their own account
-    if (request.body.userId === request.params.id) {
-      // Delete the account 
-      const user = await User.findByIdAndDelete(request.params.id);
+    // Check the user is updating their own account
+    if (request.body.data.data._id === request.params.id) {
+      // If the user is updating their password, generate a hashed updated password
+      if (request.body.data.password) {
+          const salt = await bcrypt.genSalt(10);
+          await bcrypt.hash(request.body.data.password, salt)
+            .then(hash => { request.body.data.password = hash })
+            .catch(error => next(error));
+      }
+
+      // Create the updated entry
+      const newEntry = {
+        username: request.body.data.data.username,
+        email: request.body.data.data.email,
+        password: request.body.data.password,
+        profilePicture: request.body.data.data.profilePicture,
+        coverPicture: request.body.data.data.coverPicture ? request.body.data.data.coverPicture: '',
+        followers: request.body.data.data.followers,
+        following: request.body.data.data.following,
+        bio: request.body.data.data.bio ? request.body.data.data.bio : '',
+        location: request.body.data.data.location ? request.body.data.data.location : '',
+        job: request.body.data.data.job ? request.body.data.data.job : '',
+        education: request.body.data.data.education ? request.body.data.data.education : ''
+      }; 
+
+      // Make all other requested updates
+      mongoose.set('useFindAndModify', false);
+      const user = await User.findOneAndUpdate({ _id: request.body.data.data._id } , newEntry, { new: true });
       response.status(200).json(user);
     } else {
-      response.status(403).json('Not authorized to delete this account');
+      response.status(403).json('Not authorized to update this account');
     }
   } catch(error) {
     next(error);

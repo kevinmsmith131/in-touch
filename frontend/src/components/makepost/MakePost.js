@@ -4,14 +4,15 @@ import PersonIcon from '@material-ui/icons/Person';
 import PanoramaIcon from '@material-ui/icons/Panorama';
 import SubjectIcon from '@material-ui/icons/Subject';
 import CancelIcon from '@material-ui/icons/Cancel';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from './../../context/UserContext';
+import { LoginSuccess } from './../../context/UserActions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import logger from './../../utils/logger';
 
 const MakePost = ({ isHomepage }) => {
-  const { user } = useContext(UserContext);
+  const { user, dispatch } = useContext(UserContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const caption = useRef();
   const [file, setFile] = useState(null);
@@ -66,6 +67,7 @@ const MakePost = ({ isHomepage }) => {
         }
 
         await axios.put(`/users/${user._id}`, updatedUser);
+        dispatch(LoginSuccess(user));
         window.location.reload();
       } else {
         alert('Cannot update without a picture');
