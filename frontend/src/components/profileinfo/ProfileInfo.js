@@ -15,17 +15,21 @@ const ProfileInfo = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [followedUsers, setFollowedUsers] = useState([]);
   const { user: currentUser, dispatch } = useContext(UserContext);
-  const [followed, setFollowed] = useState(currentUser.following.includes(user?._id));
+  const [followed, setFollowed] = useState(currentUser.following.includes(user._id));
+
+  console.log(currentUser.following)
 
   useEffect(() => {
-    setFollowed(currentUser.following.includes(user?._id));
+    setFollowed(currentUser.following.includes(user._id));
   }, [currentUser, user]);
 
   useEffect(() => {
     const getFollowedUsers = async () => {
       try {
-        const followedUserList = await axios.get('/users/followers/' + user._id);
-        setFollowedUsers(followedUserList.data.filter(u => u !== null && u !== undefined));
+        if (user && user._id) {
+          const followedUserList = await axios.get(`/users/followers/${user._id}`);
+          setFollowedUsers(followedUserList.data.filter(u => u !== null && u !== undefined));
+        }
       } catch(error) {
         logger.error(error);
       }
@@ -36,16 +40,17 @@ const ProfileInfo = ({ user }) => {
   const handleClick = async () => {
     try {
       if (followed) {
-        await axios.put('/users/' + user._id + '/unfollow', { userId: currentUser._id });
+        await axios.put(`/users/${user._id}/unfollow`, { userId: currentUser._id });
         dispatch({ type: 'UNFOLLOW', payload: user._id });
       } else {
-        await axios.put('/users/' + user._id + '/follow', { userId: currentUser._id });
+        await axios.put(`/users/${user._id}/follow`, { userId: currentUser._id });
         dispatch({ type: 'FOLLOW', payload: user._id });
       }
     } catch(error) {
       logger.error(error);
     }
     setFollowed(!followed);
+    window.location.reload();
   };
 
   const setInfo = async field => {
@@ -131,7 +136,7 @@ const ProfileInfo = ({ user }) => {
             : <div className="profileinfoFollowingList">
                 {followedUsers.map(followedUser => 
                     ( 
-                      <Link key={followedUser.username} to={`/profile/${followedUser.username}`} style={{ textDecoration: "none" }}>
+                      <Link key={followedUser._id} to={`/profile/${followedUser.username}`} style={{ textDecoration: "none" }}>
                         <div className="profileinfoFollowee">
                           <img 
                             className="profileinfoFolloweeProPic" 

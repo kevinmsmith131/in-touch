@@ -157,6 +157,7 @@ router.put('/password/:id', async (request, response, next) => {
 
 // Follow a user
 router.put('/:id/follow', async (request, response, next) => {
+  console.log()
   try {
     // Check if user is trying to follow self
     if (request.body.userId !== request.params.id) {

@@ -11,3 +11,18 @@ DESIGN CHOICES
 - checks for things like does not allow for empty posts
 - Validates and confirms things including regex email expression
 - Default things are handled including avatar, cover, job, location, education, information, 
+- Can't follow self
+- Real likes and follows that update buttons and counts
+- Everything refreshes live such as the followers bar when you follow a user
+- Live dates that start from now
+- Users can like their own post and see themselves on following and follower list, but not follow themselves
+- Users can view their own posts on their feed
+- Sofie is following all users
+- test user that is blank
+- Sarah has no posts
+- Posts arranged by date
+- Post image preview
+- Ability to edit and delete posts and profile and login information
+- About to make an empty post check
+- Things that adjust when scrolling and when they do not
+- Cancel a post you don't want to make if the picture looks bad

@@ -60,14 +60,16 @@ const MakePost = ({ isHomepage }) => {
 
         const currUser = await axios.get('/users/', { params: { userId: user._id } });
         let updatedUser = {};
+        let refreshedUser = {};
         if (button === 'coverPhoto') {
           updatedUser = { ...currUser, coverPicture: filename };
+          refreshedUser = { ...user, coverPicture: filename };
         } else {
           updatedUser = { ...currUser, profilePicture: filename };
+          refreshedUser = { ...user, profilePicture: filename };
         }
-
         await axios.put(`/users/${user._id}`, updatedUser);
-        dispatch(LoginSuccess(updatedUser));
+        dispatch(LoginSuccess(refreshedUser));
         window.location.reload();
       } else {
         alert('Cannot update without a picture');
@@ -148,7 +150,7 @@ const MakePost = ({ isHomepage }) => {
                   type="file" 
                   style={{ display: "none" }}
                   id="media" 
-                  accept=".png, .jpg, .jpeg, .mov, .mp4" 
+                  accept=".png, .jpg, .jpeg" 
                   onChange={event => setFile(event.target.files[0])}
                 />
               </label>            

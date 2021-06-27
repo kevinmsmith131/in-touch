@@ -4,14 +4,21 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import Followee from '../followee/Followee';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import logger from '../../utils/logger';
 
 const FollowingBar = ({ user }) => {
   const [followees, setFollowees] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
-      const followingUsers = await axios.get('/users/following/' + user._id);
-      setFollowees(followingUsers.data.filter(u => u !== null && u !== undefined));
+      try {
+        if (user && user._id) {
+          const followingUsers = await axios.get(`/users/following/${user._id}`);
+          setFollowees(followingUsers.data.filter(u => u !== null && u !== undefined));
+        }   
+      } catch(error) {
+        logger.error(error);
+      }
     }
     getUsers();
   }, [user]);
