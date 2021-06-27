@@ -16,5 +16,6 @@
     "static/js/2.db80384f.chunk.js",
     "static/css/main.2b9e3e19.chunk.css",
     "static/js/main.79130f21.chunk.js"
-  ]
+  ],
+  "proxy": "http://localhost:3000/api"
 }

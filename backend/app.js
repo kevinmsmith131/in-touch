@@ -52,9 +52,9 @@ app.post('/api/upload', upload.single('file'), async (request, response, next) =
 });
 
 // Configure route handling
-app.use('/api/auth', authRouter);
-app.use('/api/posts', postsRouter);
-app.use('/api/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/posts', postsRouter);
+app.use('/users', usersRouter);
 
 module.exports = app;
 
