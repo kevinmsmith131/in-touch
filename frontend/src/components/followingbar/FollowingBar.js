@@ -23,13 +23,15 @@ const FollowingBar = ({ user }) => {
     getUsers();
   }, [user]);
 
+  const scrollTop = () => document.getElementById('followingbar').scrollTo(0, 0);
+
   return (
     <div id="followingbar">
       <div className="followingbarWrapper">
         <div className="followingbarTitleWrapper">
           <div 
             className="followingbarTitle" 
-            onClick={() => document.getElementById('followingbar').scrollTo(0, 0)}>
+            onClick={scrollTop}>
             <SupervisorAccountIcon className="followeeLogo" htmlColor="rgb(100, 100, 100)"/>
             <p>Following</p>
           </div>

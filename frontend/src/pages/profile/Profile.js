@@ -76,6 +76,11 @@ const Profile = () => {
     }
   };
 
+  const editEmail = () => editProfile('email');
+  const editUsername = () => editProfile('username');
+  const editPassword = () => editProfile('password');
+  const invertDropdown = () => setDropdown(!dropdown);
+
   return (
     <>
       <Header isHomepage={false} username={username} />
@@ -88,19 +93,19 @@ const Profile = () => {
           </div>
           {dropdown && 
             <div className="profileDropdown triangle">
-              <div className="profileDropdownEntry" onClick={() => editProfile('email')}>
+              <div className="profileDropdownEntry" onClick={editEmail}>
                 <EmailIcon className="profileDropdownEdit" />
                 <span className="profileDropdownEdit">Change Email</span>
               </div>
-              <div className="profileDropdownEntry" onClick={() => editProfile('username')}>
+              <div className="profileDropdownEntry" onClick={editUsername}>
                 <AssignmentIndIcon className="profileDropdownEdit" />
                 <span className="profileDropdownEdit">Change Username</span>
               </div>
-              <div className="profileDropdownEntry" onClick={() => editProfile('password')}>
+              <div className="profileDropdownEntry" onClick={editPassword}>
                 <LockIcon className="profileDropdownEdit" />
                 <span className="profileDropdownEdit">Change Password</span>
               </div>
-              <div className="profileDropdownEntry" onClick={() => deleteAccount()}>
+              <div className="profileDropdownEntry" onClick={deleteAccount}>
                 <DeleteIcon className="profileDropdownDelete" />
                 <span className="profileDropdownDelete">Delete Account</span>
               </div>
@@ -111,7 +116,7 @@ const Profile = () => {
               <h4 className="profileInfoName">{user.username}</h4>
             </a>
             <span className="profileInfoBio">{user.bio}</span>
-            {user?._id === currentUser?._id && <MoreHorizIcon className="profileOptions" onClick={() => setDropdown(!dropdown)} />}
+            {user?._id === currentUser?._id && <MoreHorizIcon className="profileOptions" onClick={invertDropdown} />}
           </div>
           <div className="profileRightBottom">
             <Feed username={username} isHomepage={false}/>

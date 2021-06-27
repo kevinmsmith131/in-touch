@@ -84,6 +84,10 @@ const ProfileInfo = ({ user }) => {
     }
   };
 
+  const setLocation = () => setInfo('location');
+  const setJob = () => setInfo('job');
+  const setEducation = () => setInfo('education');
+
   return (
     <div className='profileinfo'>
       <div className="profileinfoItem">
@@ -106,21 +110,21 @@ const ProfileInfo = ({ user }) => {
           <h4 className="profileinfoTitle">Information</h4>
           <div className="profileinfoPair">
             {currentUser._id === user._id 
-              ? <LocationOnIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={() => setInfo('location')} />
+              ? <LocationOnIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={setLocation} />
               : <LocationOnIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
              }
             <span className="profileinfoValue">{user.location ? user.location : 'Location unspecified'}</span>
           </div>
           <div className="profileinfoPair">
             {currentUser._id === user._id
-              ? <WorkIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={() => setInfo('job')} />
+              ? <WorkIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={setJob} />
               : <WorkIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
             }
             <span className="profileinfoValue">{user.job ? user.job : 'Job unspecified'}</span>
           </div>
           <div className="profileinfoPair">
             {currentUser._id === user._id
-              ? <SchoolIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={() => setInfo('education')} />
+              ? <SchoolIcon className="profileinfoKeySelf" htmlColor="rgb(60, 60, 60)" onClick={setEducation} />
               : <SchoolIcon className="profileinfoKey" htmlColor="rgb(60, 60, 60)" />
             }
             <span className="profileinfoValue">{user.education ? user.education : 'Education unspecified'}</span>

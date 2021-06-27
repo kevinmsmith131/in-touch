@@ -73,6 +73,8 @@ const Post = ({ post, isHomepage }) => {
 
   };
 
+  const invertDropdown = () => setDropdown(!dropdown);
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -99,11 +101,11 @@ const Post = ({ post, isHomepage }) => {
           {dropdown &&
             <>
               <div className={dropdownName}>
-                <div className="postDropdownEntry" onClick={() => editPost()}>
+                <div className="postDropdownEntry" onClick={editPost}>
                   <EditIcon className="postDropdownEdit" />
                   <span className="postDropdownEdit">Edit Caption</span>
                 </div>
-                <div className="postDropdownEntry" onClick={() => deletePost()}>
+                <div className="postDropdownEntry" onClick={deletePost}>
                   <DeleteIcon className="postDropdownDelete" />
                   <span className="postDropdownDelete">Delete Post</span>
                 </div>
@@ -115,7 +117,7 @@ const Post = ({ post, isHomepage }) => {
             && <MoreHorizIcon 
                  className="postOptions" 
                  style={{ marginLeft : isHomepage ? '80%' : '75%' }} 
-                 onClick={() => setDropdown(!dropdown)}
+                 onClick={invertDropdown}
                />
           }
         </div>

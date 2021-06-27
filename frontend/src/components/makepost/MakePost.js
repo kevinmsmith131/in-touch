@@ -106,6 +106,27 @@ const MakePost = ({ isHomepage }) => {
     }
   };
 
+  const resetFile = () => setFile(null);
+
+  const uploadPostMedia = () => setButton('media');
+
+  const uploadProPic = () => {
+    setButton('profilePic');
+    alert('Select the photo you wish to be your new profile picture, then click post, like you are making a normal post.');
+  };
+
+  const uploadCoverPic = () => {
+    setButton('coverPhoto');
+    alert('Select the photo you wish to be your new cover photo, then click post, like you are making a normal post.');
+  };
+
+  const updateBio = () => { 
+    setButton('bio'); 
+    alert('Write your new bio in the text input area, as if you were writing a caption, then press post.'); 
+  };
+
+  const setUploadedFile = event => setFile(event.target.files[0]);
+
   return(
     <div className="makepost">
       <div className="makepostWrapper">
@@ -137,13 +158,13 @@ const MakePost = ({ isHomepage }) => {
         {file && (
           <div className="makepostContentWrapper">
             <img className="makepostContent" src={URL.createObjectURL(file)} alt=""/>
-            <CancelIcon className="makepostContentCancel" onClick={() => setFile(null)} />
+            <CancelIcon className="makepostContentCancel" onClick={resetFile} />
           </div>
         )}
         <form onSubmit={submitCallback}>
           <div className="makepostBottom">
             <div className="makepostOptions">
-              <label className="makepostOption" htmlFor="media" onClick={() => setButton('media')}>
+              <label className="makepostOption" htmlFor="media" onClick={uploadPostMedia}>
                 <AddPhotoAlternateIcon className="makepostIcon" htmlColor="rgb(206, 33, 55)"/>
                 <span className="makepostOptionText">Media</span>
                 <input 
@@ -151,18 +172,13 @@ const MakePost = ({ isHomepage }) => {
                   style={{ display: "none" }}
                   id="media" 
                   accept=".png, .jpg, .jpeg" 
-                  onChange={event => setFile(event.target.files[0])}
+                  onChange={setUploadedFile}
                 />
               </label>            
               <label 
                 className="makepostOption" 
                 htmlFor="proPic"
-                onClick={
-                  () => {
-                    setButton('profilePic');
-                    alert('Select the photo you wish to be your new profile picture, then click post, like you are making a normal post.');
-                  }
-                }>
+                onClick={uploadProPic}>
                 <PersonIcon className="makepostIcon" htmlColor="rgb(0, 102, 204"/>
                 <span className="makepostOptionText">Profile Picture</span>
                 <input 
@@ -170,18 +186,13 @@ const MakePost = ({ isHomepage }) => {
                   style={{ display: "none" }}
                   id="proPic" 
                   accept=".png, .jpg, .jpeg" 
-                  onChange={event => setFile(event.target.files[0])}
+                  onChange={setUploadedFile}
                 />
               </label>
               <label 
                 className="makepostOption" 
                 htmlFor="cover" 
-                onClick={
-                  () => {
-                    setButton('coverPhoto');
-                    alert('Select the photo you wish to be your new cover photo, then click post, like you are making a normal post.');
-                  }
-                }>
+                onClick={uploadCoverPic}>
                 <PanoramaIcon className="makepostIcon" htmlColor="rgb(0, 180, 0)"/>
                 <span className="makepostOptionText">Cover Photo</span>
                 <input 
@@ -189,17 +200,12 @@ const MakePost = ({ isHomepage }) => {
                   style={{ display: "none" }} 
                   id="cover" 
                   accept=".png, .jpg, .jpeg" 
-                  onChange={event => setFile(event.target.files[0])}
+                  onChange={setUploadedFile}
                 />
               </label>
               <label 
                 className="makepostOption" 
-                onClick={
-                  () => { 
-                    setButton('bio'); 
-                    alert('Write your new bio in the text input area, as if you were writing a caption, then press post.'); 
-                  }
-                }>
+                onClick={updateBio}>
                 <SubjectIcon className="makepostIcon" htmlColor="rgb(245, 176, 66)"/>
                 <span className="makepostOptionText">Bio</span>
               </label>

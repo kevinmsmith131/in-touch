@@ -29,6 +29,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 
+// Set up app to handle request
+app.use(express.static('build'));
+
 // Handle files uploaded to the server
 const storage = multer.diskStorage({
   destination: (request, file, callback) => {
