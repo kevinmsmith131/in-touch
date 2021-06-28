@@ -30,14 +30,14 @@ router.post('/login', async (request, response, next) => {
     // Get user in the database with matching credentials and report if not found
     const user = await User.findOne({ email: request.body.email });
     if (!user) response.status(404).json('No account with that username and email');
-    console.log('\n\n\nUser: ' + JSON.stringify(user) + '\n\n\n')
+
     // Check if the proper password is entered and report if not found
     const validPassword = await bcrypt.compare(request.body.password, user.password);
     if (!validPassword) { 
       response.status(400).json('Incorrect password');
       alert('Invalid password');
     }
-
+    console.log('\n\n\nUser: ' + JSON.stringify(user) + '\n\n\n')
     response.status(200).json(user);
   } catch(error) {
     next(error);
