@@ -30,6 +30,7 @@ app.use(express.json());
 app.use(morgan('common'));
 
 // Set up app to handle request
+app.use(express.static('build'));
 app.get('*',(request, response) => {
   response.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
