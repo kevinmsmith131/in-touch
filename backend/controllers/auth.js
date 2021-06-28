@@ -37,6 +37,7 @@ router.post('/login', async (request, response, next) => {
 
     response.status(200).json(user);
   } catch(error) {
+    console.log('\n\n\nMade it to the backend\n\n\n')
     next(error);
   }
 });
