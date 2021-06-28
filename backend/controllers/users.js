@@ -122,8 +122,8 @@ router.put('/password/:id', async (request, response, next) => {
     if (request.body.data.data._id === request.params.id) {
       // If the user is updating their password, generate a hashed updated password
       if (request.body.data.password) {
-          const salt = await bcrypt.genSalt(10);
-          await bcrypt.hash(request.body.data.password, salt)
+          const salt = await bcrypt.genSalt(10, () => {});
+          await bcrypt.hash(request.body.data.password, salt, null)
             .then(hash => { request.body.data.password = hash })
             .catch(error => next(error));
       }
