@@ -3,7 +3,7 @@ A social media platform that allows users to post pictures with captions, like p
 
 ### Premise
 
-### User Actions
+### Features
 
 ### Design Choices
 

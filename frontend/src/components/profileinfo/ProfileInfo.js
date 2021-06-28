@@ -17,8 +17,6 @@ const ProfileInfo = ({ user }) => {
   const { user: currentUser, dispatch } = useContext(UserContext);
   const [followed, setFollowed] = useState(currentUser.following.includes(user._id));
 
-  console.log(currentUser.following)
-
   useEffect(() => {
     setFollowed(currentUser.following.includes(user._id));
   }, [currentUser, user]);

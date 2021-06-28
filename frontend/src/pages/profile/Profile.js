@@ -12,6 +12,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { LoginSuccess } from './../../context/UserActions';
 import logger from '../../utils/logger';
 
@@ -21,6 +22,7 @@ const Profile = () => {
   const [dropdown, setDropdown] = useState(false);
   const username = useParams().username;
   const { user: currentUser, dispatch } = useContext(UserContext);
+  const history = useHistory();
 
   useEffect(() => {
     const getUser = async () => {
@@ -33,6 +35,8 @@ const Profile = () => {
     }
     getUser();
   }, [username]);
+
+  useEffect(() => { if (dropdown) setDropdown(false) }, [user]);
 
   const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -48,7 +52,7 @@ const Profile = () => {
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
             const newName = result.data.name;
             dispatch(LoginSuccess({ ...currentUser, username: newName }));
-            window.location.replace(`http://localhost:3000/profile/${newName}`);
+            history.push(`/profile/${newName}`);
           } else if (field === 'password' && updatedField.length >= 5) {
             await axios.put(`/users/password/${user._id}`, { data: { ...oldProfile, password: updatedField } });
           } else {
@@ -62,14 +66,18 @@ const Profile = () => {
       }
   };
 
+  const logout = () => {
+    history.push('/register');
+    dispatch(LoginSuccess(null));
+    localStorage.clear();
+  };
+
   const deleteAccount = async () => {
     const confirmation = prompt('Enter Y to confirm or N to cancel. Casing does not matter.')?.toLowerCase();
     if (confirmation === 'y') {
       try {
         await axios.delete(`/users/${currentUser._id}`, { data: currentUser });
-        localStorage.clear();
-        window.location.replace('http://localhost:3000/register');
-        dispatch(LoginSuccess(null));
+        logout();
       } catch(error) {
         logger.error(error);
       }
