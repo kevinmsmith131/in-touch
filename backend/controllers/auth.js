@@ -7,7 +7,7 @@ router.post('/register', async (request, response, next) => {
   try {
     // Generate a hashed version of the password
     const salt = await bcrypt.genSalt(10, () => {});
-    const hashedPassword = await bcrypt.hash(request.body.password, salt, null, () => {});
+    const hashedPassword = await bcrypt.hash(request.body.password, salt, null;
 
     // Create the new user model
     const newUser = await new User({
@@ -32,8 +32,9 @@ router.post('/login', async (request, response, next) => {
     if (!user) response.status(404).json('No account with that username and email');
 
     // Check if the proper password is entered and report if not found
-    const validPassword = await bcrypt.compare(request.body.password, user.password, () => {});
-    console.log('\n\n\nThis is gonna be empty: ' + validPassword)
+    const validPassword = await bcrypt.compare(request.body.password, user.password)
+      .then(response => console.log('\n\n\nCompare: ' + response)); 
+
     if (!validPassword) response.status(400).json('Incorrect password');
 
     response.status(200).json(user);
