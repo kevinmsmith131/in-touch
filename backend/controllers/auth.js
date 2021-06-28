@@ -7,7 +7,7 @@ router.post('/register', async (request, response, next) => {
   try {
     // Generate a hashed version of the password
     const salt = await bcrypt.genSalt(10, () => {});
-    const hashedPassword = await bcrypt.hash(request.body.password, salt, null;
+    const hashedPassword = await bcrypt.hash(request.body.password, salt, null, () => {});
 
     // Create the new user model
     const newUser = await new User({
