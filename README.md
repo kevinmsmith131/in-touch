@@ -1,12 +1,12 @@
-# in-touch
+# InTouch
 A social media platform that allows users to post pictures with captions, like posts, and follow other users whose content they wish to view.
 
-## Premise
+### Premise
 
-## User Actions
+### User Actions
 
-## Design Choices
+### Design Choices
 
-## Technologies
+### Technologies
 
-## How do I get InTouch?
+### How do I get InTouch?
