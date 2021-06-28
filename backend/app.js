@@ -3,7 +3,6 @@ const app = express();
 
 const config = require('./utils/config');
 const logger = require('./utils/logger');
-const helmet = require('helmet');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
