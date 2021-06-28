@@ -13,6 +13,8 @@ const usersRouter = require('./controllers/users');
 const multer = require('multer');
 const path = require('path');
 
+const baseUrl = 'https://in-touch-heroku.herokuapp.com/';
+
 logger.info('Establishing connection to MongoDB using URI: ', config.MONGODB_URI);
 
 // Connect to MongoDB database
@@ -31,6 +33,9 @@ app.use(morgan('common'));
 
 // Set up app to handle request
 app.use(express.static('build'));
+app.get('*',(request, response) => {
+  response.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 // Handle files uploaded to the server
 const storage = multer.diskStorage({
