@@ -35,7 +35,9 @@ router.post('/login', async (request, response, next) => {
 
     // Check if the proper password is entered and report if not found
     let validPassword = false;
-    await bcrypt.compare(request.body.password, user.password, (error, result) => { validPassword = result; });
+    await bcrypt.compare(request.body.password, user.password, (error, result) => { 
+      console.log('\n\n\nResult: ' + result);
+      validPassword = result; });
 
 
     if (!validPassword) response.status(400).json('Incorrect password');
