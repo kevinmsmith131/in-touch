@@ -27,7 +27,6 @@ app.use('/api/images', express.static(path.join(__dirname, 'public/images')));
 // Set up middleware
 app.use(cors());
 app.use(express.json());
-app.use(helmet());
 app.use(morgan('common'));
 
 // Set up app to handle request
