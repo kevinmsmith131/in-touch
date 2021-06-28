@@ -31,7 +31,7 @@ app.use(morgan('common'));
 
 // Set up app to handle request
 app.get('*',(request, response) => {
-  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  response.sendFile(path.resolve(path.join(__dirname, 'build', 'index.html')));
 });
 
 // Handle files uploaded to the server
