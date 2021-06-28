@@ -13,7 +13,7 @@ import logger from './../../utils/logger';
 
 const MakePost = ({ isHomepage }) => {
   const { user, dispatch } = useContext(UserContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = '/assets/'
   const caption = useRef();
   const [file, setFile] = useState(null);
   const [button, setButton] = useState('media');
