@@ -33,6 +33,9 @@ router.post('/login', async (request, response, next) => {
     const user = await User.findOne({ email: request.body.email });
     if (!user) response.status(404).json('No account with that username and email');
 
+    console.log('\n\n\nBody: ' + request.body.password)
+    console.log('\n\n\nPass: ' + user.password)
+
     // Check if the proper password is entered and report if not found
     let validPassword = false;
     await bcrypt.compare(request.body.password, user.password, (error, result) => { 
