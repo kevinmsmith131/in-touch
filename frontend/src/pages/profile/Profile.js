@@ -42,18 +42,23 @@ const Profile = () => {
 
   const editProfile = async field => {
       const updatedField = prompt('Enter your new ' + field + '.');
-      const confirmation = prompt('Enter Y to confirm or N to cancel. Casing does not matter.')?.toLowerCase();
+      const confirmation = prompt('Enter Y to confirm or anything else to cancel. Casing does not matter.')?.toLowerCase();
       if (confirmation === 'y') {
         try {
           const oldProfile = await axios.get(`/users?username=${username}`);
           if (field === 'email' && isValidEmail(updatedField)) {
             await axios.put(`/users/email/${user._id}`, { data: { ...oldProfile, email: updatedField } });
           } else if (field === 'username') {
+            const oldName = user.username;
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
-            console.log(result)
             const newName = result.data.name;
-            dispatch(LoginSuccess({ ...currentUser, username: newName }));
-            history.push(`/profile/${newName}`);
+
+            if (newName === oldName) {
+              alert('There is already a user with that username');
+            } else {
+              dispatch(LoginSuccess({ ...currentUser, username: newName }));
+              history.push(`/profile/${newName}`);
+            }
           } else if (field === 'password' && updatedField.length >= 5) {
             await axios.put(`/users/password/${user._id}`, { data: { ...oldProfile, password: updatedField } });
           } else {
@@ -74,7 +79,7 @@ const Profile = () => {
   };
 
   const deleteAccount = async () => {
-    const confirmation = prompt('Enter Y to confirm or N to cancel. Casing does not matter.')?.toLowerCase();
+    const confirmation = prompt('Enter Y to confirm or anything else. Casing does not matter.')?.toLowerCase();
     if (confirmation === 'y') {
       try {
         await axios.delete(`/users/${currentUser._id}`, { data: currentUser });

@@ -106,7 +106,6 @@ router.put("/username/:id", async (request, response) => {
           request.params.id, 
           { ...request.body.data.data, username: request.body.data.username } 
         );
-        console.log(JSON.stringify(request.body))
         response.status(200).json({ name: request.body.data.username });
       } catch (error) {
         logger.error(error);
