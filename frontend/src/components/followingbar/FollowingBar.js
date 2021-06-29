@@ -9,13 +9,11 @@ import logger from '../../utils/logger';
 const FollowingBar = ({ user }) => {
   const [followees, setFollowees] = useState([]);
 
-  console.log('\n\n\nIs there a user in the following bar: ' + JSON.stringify(user))
-
   useEffect(() => {
     const getUsers = async () => {
       try {
         if (user && user._id) {
-          const followingUsers = await axios.get(`https://in-touch-heroku.herokuapp.com/users/following/${user._id}`);
+          const followingUsers = await axios.get(`/users/following/${user._id}`);
           setFollowees(followingUsers.data.filter(u => u !== null && u !== undefined));
         }   
       } catch(error) {
