@@ -6,6 +6,7 @@ A social media platform that allows users to post pictures with captions, like p
 ### Features
 
 ### Technologies
+InTouch is a full stack web application that runs on the MERN stack. This means 
 
 ### How do I get InTouch?
 You can access the application using this url: https://in-touch-heroku.herokuapp.com/
