@@ -12,7 +12,7 @@ import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
 import logger from './../../utils/logger';
 
 const ProfileInfo = ({ user }) => {
-  const PF = '/assets';
+  const PF = '/images';
   const [followedUsers, setFollowedUsers] = useState([]);
   const { user: currentUser, dispatch } = useContext(UserContext);
   const [followed, setFollowed] = useState(currentUser.following.includes(user._id));

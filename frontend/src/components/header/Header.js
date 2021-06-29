@@ -7,7 +7,7 @@ import { LoginSuccess } from './../../context/UserActions';
 
 const Header = ({ isHomepage, username }) => {
   const { user, dispatch } = useContext(UserContext);
-  const PF = '/assets';
+  const PF = '/images';
 
   const logout = () => {
     dispatch(LoginSuccess(null));

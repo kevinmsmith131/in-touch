@@ -13,7 +13,7 @@ import logger from './../../utils/logger';
 
 const MakePost = ({ isHomepage }) => {
   const { user, dispatch } = useContext(UserContext);
-  const PF = '/assets'
+  const PF = '/images'
   const caption = useRef();
   const [file, setFile] = useState(null);
   const [button, setButton] = useState('media');

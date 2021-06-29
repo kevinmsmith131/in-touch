@@ -17,7 +17,7 @@ import { LoginSuccess } from './../../context/UserActions';
 import logger from '../../utils/logger';
 
 const Profile = () => {
-  const PF = '/assets';
+  const PF = '/images';
   const [user, setUser] = useState({});
   const [dropdown, setDropdown] = useState(false);
   const username = useParams().username;
