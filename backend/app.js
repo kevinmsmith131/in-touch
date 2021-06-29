@@ -32,7 +32,7 @@ app.use('/users', usersRouter);
 // Create storage for multer
 const storage = multer.diskStorage({
   destination: (request, file, callback) => {
-    callback(null, 'build/images');
+    callback(null, 'build/images/post');
   }, 
   filename: (request, file, callback) => {
     callback(null, request.body.name);
