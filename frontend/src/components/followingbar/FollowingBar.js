@@ -13,7 +13,7 @@ const FollowingBar = ({ user }) => {
     const getUsers = async () => {
       try {
         if (user && user._id) {
-          const followingUsers = await axios.get(`/users/following/${user._id}`);
+          const followingUsers = await axios.get(`https://in-touch-heroku.herokuapp.com/users/following/${user._id}`);
           setFollowees(followingUsers.data.filter(u => u !== null && u !== undefined));
         }   
       } catch(error) {
