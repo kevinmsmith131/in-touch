@@ -7,7 +7,7 @@ import { LoginSuccess } from './../../context/UserActions';
 
 const Header = ({ isHomepage, username }) => {
   const { user, dispatch } = useContext(UserContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = '/assets';
 
   const logout = () => {
     dispatch(LoginSuccess(null));

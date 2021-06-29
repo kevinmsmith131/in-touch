@@ -17,7 +17,7 @@ const Post = ({ post, isHomepage }) => {
   const [user, setUser] = useState({});
   const [isLiked, setIsLiked] = useState(false);
   const [dropdown, setDropdown] = useState(false);  
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = '/assets';
   const { user: currentUser } = useContext(UserContext);
   const dropdownName = isHomepage ? 'postDropdownHome': 'postDropdownProfile';
   const widgetName = isHomepage ? 'postDropdownWidgetHome' : 'postDropdownWidgetProfile';

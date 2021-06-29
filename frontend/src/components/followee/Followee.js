@@ -2,7 +2,7 @@ import './followee.css';
 import { Link } from 'react-router-dom';
 
 const Followee = ({ user }) => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = '/assets';
 
   return (
     <Link to={`/profile/${user.username}`}>
