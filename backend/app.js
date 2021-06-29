@@ -24,6 +24,11 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('common'));
 
+// Configure route handling
+app.use('/auth', authRouter);
+app.use('/posts', postsRouter);
+app.use('/users', usersRouter);
+
 // Set up app to handle request
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('*',(request, response) => {
@@ -48,11 +53,6 @@ app.post('/api/upload', upload.single('file'), async (request, response, next) =
     next(error);
   }
 });
-
-// Configure route handling
-app.use('/auth', authRouter);
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
 
 module.exports = app;
 
