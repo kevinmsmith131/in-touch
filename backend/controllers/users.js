@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // Get a user
 router.get('/', async (request, response, next) => {
-  console.log('\n\n\n\n\n\nUsername one: ' + request.query.username + '\n\n\n\n')
   const userId = request.query.userId;
   const username = request.query.username;
 
@@ -14,7 +13,6 @@ router.get('/', async (request, response, next) => {
     const user = userId 
       ? await User.findById(userId) 
       : await User.findOne({ username: username });
-      console.log('\n\n\n\n\n\nUser one: ' + JSON.stringify(user) + '\n\n\n\n')
     response.status(200).json(user);
   } catch(error) {
     next(error);
@@ -23,9 +21,7 @@ router.get('/', async (request, response, next) => {
 
 // Get all followed users for a user
 router.get('/following/:userId', async (request, response, next) => {
-  console.log('\n\n\n\nCheck one\n\n\n\n')
   try {
-    console.log('\n\n\n\nCheck two\n\n\n\n')
     // Get all the users that the desired user follows 
     const user = await User.findById(request.params.userId);
     const usersFollowing = await Promise.all(

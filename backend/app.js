@@ -19,9 +19,6 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
   .then(() => logger.info('Successfully connected to MongoDB'))
   .catch(() => logger.error('Failed to connect to MongoDB'));
 
-// Set up path to images folder in public folder
-app.use('/api/images', express.static(path.join(__dirname, 'public/images')));
-
 // Set up middleware
 app.use(cors());
 app.use(express.json());
