@@ -31,7 +31,7 @@ const Register = () => {
       };
 
       try {
-        const currUser = await axios.post('auth/register', user);
+        const currUser = await axios.post('/auth/register', user);
         dispatch(LoginSuccess(currUser.data));
         setWaiting(false);
       } catch(error) {
