@@ -27,7 +27,7 @@ const Profile = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get(`/users?username=${username}`);
+        const response = await axios.get(`/users/${username}`);
         setUser(response.data);
       } catch (error) {
         logger.error(error);
