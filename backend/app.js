@@ -12,7 +12,7 @@ const usersRouter = require('./controllers/users');
 const multer = require('multer');
 const path = require('path');
 
-const baseUrl = 'https://in-touch-heroku.herokuapp.com/';
+const baseUrl = 'https://in-touch-heroku.herokuapp.com';
 
 logger.info('Establishing connection to MongoDB using URI: ', config.MONGODB_URI);
 
@@ -55,9 +55,9 @@ app.post('/api/upload', upload.single('file'), async (request, response, next) =
 });
 
 // Configure route handling
-app.use('/auth', authRouter);
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
+app.use(baseUrl + '/auth', authRouter);
+app.use(baseUrl + '/posts', postsRouter);
+app.use(baseUrl + '/users', usersRouter);
 
 module.exports = app;
 
