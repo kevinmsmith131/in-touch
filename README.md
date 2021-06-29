@@ -5,8 +5,6 @@ A social media platform that allows users to post pictures with captions, like p
 
 ### Features
 
-### Design Choices
-
 ### Technologies
 
 ### How do I get InTouch?
