@@ -8,7 +8,7 @@ import { LoginSuccess } from './../../context/UserActions';
 
 const Register = () => {
   const [waiting, setWaiting] = useState(false);
-  const { dispatch } = useContext(UserContext)
+  const { dispatch } = useContext(UserContext);
   const username = useRef();
   const email = useRef();
   const password = useRef();
