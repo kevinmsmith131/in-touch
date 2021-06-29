@@ -22,7 +22,6 @@ router.get('/', async (request, response, next) => {
 // Get all followed users for a user
 router.get('/following/:userId', async (request, response, next) => {
   try {
-    console.log('\n\n\n\nMade it here\n\n\n');
     // Get all the users that the desired user follows 
     const user = await User.findById(request.params.userId);
     const usersFollowing = await Promise.all(
