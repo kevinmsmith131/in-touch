@@ -29,6 +29,16 @@ app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 
+// Handle uploading images using multer
+const upload = multer({ storage: storage });
+app.post('/upload', upload.single('file'), async (request, response, next) => {
+  try {
+    return response.status(200).json('File successfully uploaded');
+  } catch(error) {
+    next(error);
+  }
+});
+
 // Set up app to handle request
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('*',(request, response) => {
@@ -42,15 +52,6 @@ const storage = multer.diskStorage({
   }, 
   filename: (request, file, callback) => {
     callback(null, request.body.name);
-  }
-});
-
-const upload = multer({ storage: storage });
-app.post('/api/upload', upload.single('file'), async (request, response, next) => {
-  try {
-    return response.status(200).json('File successfully uploaded');
-  } catch(error) {
-    next(error);
   }
 });
 
