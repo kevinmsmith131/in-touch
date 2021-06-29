@@ -29,6 +29,16 @@ app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 
+// Create storage for multer
+const storage = multer.diskStorage({
+  destination: (request, file, callback) => {
+    callback(null, 'public/images');
+  }, 
+  filename: (request, file, callback) => {
+    callback(null, request.body.name);
+  }
+});
+
 // Handle uploading images using multer
 const upload = multer({ storage: storage });
 app.post('/upload', upload.single('file'), async (request, response, next) => {
@@ -43,16 +53,6 @@ app.post('/upload', upload.single('file'), async (request, response, next) => {
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('*',(request, response) => {
   response.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-// Handle files uploaded to the server
-const storage = multer.diskStorage({
-  destination: (request, file, callback) => {
-    callback(null, 'public/images');
-  }, 
-  filename: (request, file, callback) => {
-    callback(null, request.body.name);
-  }
 });
 
 module.exports = app;
