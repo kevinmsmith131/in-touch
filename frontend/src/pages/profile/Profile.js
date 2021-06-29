@@ -48,7 +48,9 @@ const Profile = () => {
           const oldProfile = await axios.get(`/users?username=${username}`);
           if (field === 'email' && isValidEmail(updatedField)) {
             await axios.put(`/users/email/${user._id}`, { data: { ...oldProfile, email: updatedField } });
-          } else if (field === 'username' && user.username !== updatedField) {
+          } else if (field === 'username') {
+            if (user.username === updatedField) return;
+
             const oldName = user.username;
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
             const newName = result.data.name;
