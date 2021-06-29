@@ -9,6 +9,8 @@ import logger from '../../utils/logger';
 const FollowingBar = ({ user }) => {
   const [followees, setFollowees] = useState([]);
 
+  console.log('\n\n\nIs there a user in the following bar: ' + JSON.stringify(user))
+
   useEffect(() => {
     const getUsers = async () => {
       try {
