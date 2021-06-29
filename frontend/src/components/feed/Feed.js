@@ -15,7 +15,7 @@ const Feed = ({ username, isHomepage }) => {
     const getPosts = async () => {
       const response = username 
         ? await axios.get('/posts/profile/' + username)
-        : await axios.get('posts/feed/' + user._id);
+        : await axios.get('/posts/feed/' + user._id);
       setPosts(response.data.sort((p1, p2) => new Date(p2.createdAt) - new Date(p1.createdAt)));
     }
     getPosts();
