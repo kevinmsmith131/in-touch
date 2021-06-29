@@ -50,6 +50,7 @@ const Profile = () => {
             await axios.put(`/users/email/${user._id}`, { data: { ...oldProfile, email: updatedField } });
           } else if (field === 'username') {
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
+            console.log(result)
             const newName = result.data.name;
             dispatch(LoginSuccess({ ...currentUser, username: newName }));
             history.push(`/profile/${newName}`);
