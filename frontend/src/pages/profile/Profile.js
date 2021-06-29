@@ -48,13 +48,14 @@ const Profile = () => {
           const oldProfile = await axios.get(`/users?username=${username}`);
           if (field === 'email' && isValidEmail(updatedField)) {
             await axios.put(`/users/email/${user._id}`, { data: { ...oldProfile, email: updatedField } });
-          } else if (field === 'username') {
+          } else if (field === 'username' && user.username !== updatedField) {
             const oldName = user.username;
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
             const newName = result.data.name;
 
             if (newName === oldName) {
               alert('There is already a user with that username');
+              return;
             } else {
               dispatch(LoginSuccess({ ...currentUser, username: newName }));
               history.push(`/profile/${newName}`);
