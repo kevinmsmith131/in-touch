@@ -14,7 +14,7 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { LoginSuccess } from './../../context/UserActions';
-import logger from '../../utils/logger';
+import logger from './../../utils/logger';
 
 const Profile = () => {
   const PF = '/images';
@@ -27,7 +27,7 @@ const Profile = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get(`/users/${username}`);
+        const response = await axios.get(`/users?username=${username}`);
         setUser(response.data);
       } catch (error) {
         logger.error(error);
