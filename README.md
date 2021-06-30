@@ -6,7 +6,7 @@ InTouch was built with the intent of providing a social media app that allows us
 
 ## Features
 ### Registration Page
-The registration page provides a form that allows for a user to enter an email, username, password, confirm the password, and submit this information to create their account. The app ensures that the email follows the email format of *a@b.c*, the username is not already in use, and the passwords are *at least* 5 characters and match each other. If all of these conditions are met, a new profile will be registered with the provided information. There is also a button that allows a user to navigate to the login page.
+The registration page provides a form that allows for a user to enter an email, username, password, confirm the password, and submit this information to create their account. The app ensures that the email follows the email format of *a@b.c*, the username is not already in use, and the passwords are *at least* 5 characters and match each other. The app uses a middleware called bcrypt to store an encrypted version of the password in the database. If all of these conditions are met, a new profile will be registered with the provided information. There is also a button that allows a user to navigate to the login page.
 
 ### Login Page
 The login page provides a form that allows for a user to enter their email and password, and then submit this information to be logged in. The app checks for a user with this information, and if one exists, logs them in. There is also a button that allows a user to navigate to the registration page.
@@ -16,7 +16,7 @@ The login page provides a form that allows for a user to enter their email and p
 The header is the blue bar across the top of the page. On the left of the header there is an icon that signs the user out when clicked, in the center there is an InTouch logo that brings the user to the top of the home page when clicked, and on the right is the user's profile picture that brings the user to their profile page when clicked. If the user has not set a profile picture, a default avatar will be supplied.
 
 ##### Following Bar
-The following bar displays all of the users that the logged in user is following. Each of the displayed users can be clicked to be brought to their profile page. The header that reads "Following" at the top of the following bar can be clicked to be brought to the top of the following bar, if the user has scrolled down. If the user is not following any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
+The following bar displays all of the users that the logged in user is following. Each of the displayed users can be clicked to be brought to their profile page. The header that reads "Following" at the top of the following bar stays at the top of the bar, even when scrolling, and can be clicked to be brought to the top of the following bar, if the user has scrolled down. If the user is not following any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
 
 ##### Feed
 ###### Make New Post Box
@@ -33,7 +33,7 @@ The header is the same as the header for the home page, except since this time w
 The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed. If the user is not following any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
 
 ##### Profile Introduction
-Need to finish
+The profile introduction has a cover picture with the user's profile picture on top of it. If the profile picture or cover picture have not been set by the user, a default will be provided. Below is the user's username and below that is the user's bio if they have set one. If the profile page being displayed belongs to the logged in user, to the right of the username and bio there will be an icon with three horizontal dots. When this icon is clicked there will be a pop up to the left of the icon that allows the logged in user to change their email, username, password, or delete their account. If the user switches to another user's profile while the pop up is displayed, the pop up immediately disappears, which is import for security reasons, because if the pop up were to stay up while on another user's profile, the logged in user would be able to use to change the information of other users. One thing to note is that when scrolling down on a profile page, the section containing the username, bio, and icon with its pop up will remain at the top of the screen, and the username can be clicked to be brought back to the top of the page.
 
 ##### User Information
 Need to finish
