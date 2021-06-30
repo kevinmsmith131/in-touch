@@ -17,6 +17,7 @@ The header is the blue bar across the top of the page. On the left of the header
 
 ##### Following Bar
 The following bar displays all of the users that the logged in user is following. Each of the displayed users can be clicked to be brought to their profile page. The header that reads "Following" at the top of the following bar can be clicked to be brought to the top of the following bar, if the user has scrolled down. If the user is not following any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
+
 ##### Feed
 ###### Make New Post Box
 At the top of the make new post box there is the logged in user's profile picture, which can be clicked to bring the user to their profile page, and there is an input field where the user can type the caption of the post. Below there are four buttons, one for attatching pictures to the post, and the rest are for updating the logged in user's profile picture, cover picture, and bio respectively. For the uploading a post picture, changing the profile picture, and changing the cover picture buttons, after the button is clicked there is a popup that allows a user to select an image to attach, and when the image is selected a preview of the image is shown in the make new post box, with a small icon in the top right corner of the image that allows the user to cancel the image upload. Finally the last button on the bottom allows the user to finalize and post everything they have entered, and this button accepts posts with only a caption and posts with only an image, but it does not allow for empty posts.
@@ -29,14 +30,15 @@ Each post has the profile picture and username of the user that made the post on
 The header is the same as the header for the home page, except since this time we are on a profile instead of the home page, if the InTouch logo is clicked the logged in user is brought to the home page, and if their profile picture is clicked, the logged in user is brought to the top of the page if the profile page being displayed is their own, or they are brought to their own profile page, if the profile page being displayed belongs to another user.
 
 ##### Following Bar
-The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed.
+The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed. If the user is not followed by any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
+
 
 ##### Profile Introduction
 
 ##### User Information
 
 ##### Followers Bar
-The followers bar is the same concept as the following bar, except it instead displays the users who follow the user whose profile page is being displayed.
+The followers bar is the same concept as the following bar, except it instead displays the users that follow the user whose profile page is being displayed.
 
 ##### Feed
 
