@@ -14,7 +14,9 @@ The login page provides a form that allows for a user to enter their email and p
 ### Home Page 
 ##### Header
 The header is the blue bar across the top of the page. On the left of the header there is an icon that signs the user out when clicked, in the center there is an InTouch logo that brings the user to the top of the home page when clicked, and on the right is the user's profile picture that brings the user to their profile page when clicked.
+
 ##### Following Bar
+The following bar displays all of the users that the logged in user is following. Each of the displayed users can be clicked to be brought to their profile page. The header that reads "Following" at the top of the following bar can be clicked to be brought to the top of the following bar, if the user has scrolled down.
 ##### Feed
 
 ### Profile Page
