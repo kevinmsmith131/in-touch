@@ -49,17 +49,16 @@ const Profile = () => {
           if (field === 'email' && isValidEmail(updatedField)) {
             await axios.put(`/users/email/${user._id}`, { data: { ...oldProfile, email: updatedField } });
           } else if (field === 'username') {
-            const oldName = user.username;
             const result = await axios.put(`/users/username/${user._id}`, { data: { ...oldProfile, username: updatedField } });
-            const newName = result.data.name;
-
-            if (newName === oldName) {
-              alert('The username you entered is already in use.');
+            
+            if (result === null) {
+              alert('The username you entered is alreay in use');
               return;
-            } else {
-              dispatch(LoginSuccess({ ...currentUser, username: newName }));
-              history.push(`/profile/${newName}`);
             }
+
+            const newName = result.data.name;
+            dispatch(LoginSuccess({ ...currentUser, username: newName }));
+            history.push(`/profile/${newName}`);
           } else if (field === 'password' && updatedField.length >= 5) {
             await axios.put(`/users/password/${user._id}`, { data: { ...oldProfile, password: updatedField } });
           } else {

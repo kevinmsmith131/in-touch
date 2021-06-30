@@ -108,7 +108,7 @@ router.put("/username/:id", async (request, response) => {
         );
         response.status(200).json({ name: request.body.data.username });
       } catch (error) {
-        logger.error(error);
+        response.status(200).json(null);
       }
   } else {
     response.status(403).json("User not authorized to update account");
