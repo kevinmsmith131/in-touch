@@ -31,6 +31,12 @@ The header is the same as the header for the home page, except since this time w
 ##### Following Bar
 The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed.
 
+##### Profile Introduction
+
+##### User Information
+
+##### Followers Bar
+
 ##### Feed
 
 ## Technologies
