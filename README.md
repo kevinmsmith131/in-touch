@@ -21,7 +21,11 @@ The following bar displays all of the users that the logged in user is following
 
 ### Profile Page
 ##### Header
+The header is the same as the header for the home page, except since this time we are on a profile instead of the home page, if the InTouch logo is clicked the logged in user is brought to their home page, and if their profile picture is clicked, the logged in user is brought to the top of their page if the profile page being displayed is their own, or they are brought to their own profile page, if the profile page being displayed belongs to another user.
+
 ##### Following Bar
+The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed.
+
 ##### Feed
 
 ## Technologies
