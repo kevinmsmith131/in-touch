@@ -16,8 +16,13 @@ The login page provides a form that allows for a user to enter their email and p
 The header is the blue bar across the top of the page. On the left of the header there is an icon that signs the user out when clicked, in the center there is an InTouch logo that brings the user to the top of the home page when clicked, and on the right is the user's profile picture that brings the user to their profile page when clicked.
 
 ##### Following Bar
-The following bar displays all of the users that the logged in user is following. Each of the displayed users can be clicked to be brought to their profile page. The header that reads "Following" at the top of the following bar can be clicked to be brought to the top of the following bar, if the user has scrolled down.
+The following bar displays all of the users that the logged in user is following. Each of the displayed users can be clicked to be brought to their profile page. The header that reads "Following" at the top of the following bar can be clicked to be brought to the top of the following bar, if the user has scrolled down. If the user is not following any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
 ##### Feed
+###### Make New Post Box
+At the top of the make new post box there is the logged in user's profile picture, which can be clicked to bring the user to their profile page, and there is an input field where the user can type the caption of the post. Below there are four buttons, one for attatching pictures to the post, and the rest are for updating the logged in user's profile picture, cover picture, and bio respectively. For the uploading a post picture, changing the profile picture, and changing the cover picture buttons, after the button is clicked there is a popup that allows a user to select an image to attach, and when the image is selected a preview of the image is shown in the make new post box, with a small icon in the top right corner of the image that allows the user to cancel the image upload. Finally the last button on the bottom allows the user to finalize and post everything they have entered, and this button accepts posts with only a caption and posts with only an image, but it does not allow for empty posts.
+
+
+###### Existing Posts
 
 ### Profile Page
 ##### Header
@@ -34,7 +39,7 @@ InTouch is a full stack web application that runs on the MERN stack. This means 
 ## How do I get InTouch?
 You can access the application using this url: https://in-touch-heroku.herokuapp.com/
 
-If you would like to see what the app looks like for a user who is following and is followed by many other users, you can use the login sofie@gmail.com and password 123456. 
+If you would like to see what the app looks like for a user who is following and is followed by many other users, you can use the login sofie@gmail.com and password 123456. If you would like to log in as any of the other users, their logins are *their username in all lowercase*@gmail.com and their passwords are 123456. Feel free to use these accounts to try out following, unfollowing, liking, and whatever else you might want to do.
 
 If you would like to test out the features that make changes to a profile such as changing the username, email, password, or deleting an account, please register your own account to do so.
 
