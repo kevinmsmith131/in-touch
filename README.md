@@ -12,7 +12,14 @@ The registration page provides a form that allows for a user to enter an email, 
 The login page provides a form that allows for a user to enter their email and password, and then submit this information to be logged in. The app checks for a user with this information, and if one exists, logs them in. There is also a button that allows a user to navigate to the registration page.
 
 ### Home Page 
+##### Header
+##### Following Bar
+##### Feed
+
 ### Profile Page
+##### Header
+##### Following Bar
+##### Feed
 
 ## Technologies
 InTouch is a full stack web application that runs on the MERN stack. This means any data that the application stores is stored in a MongoDB database, the backend server is implemented using the Express framework, the runtime environment that the server runs on is Node.js, and the frontend is built using the React framework. The backend server adheres to RESTful API principles, and the frontend utilizes the React Context API to keep track of the currently logged in user. The application is deployed to the cloud using Heroku.
