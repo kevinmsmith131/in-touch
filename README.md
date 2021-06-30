@@ -6,6 +6,8 @@ InTouch was built with the intent of providing a social media app that allows us
 
 ## Features
 ### Registration Page
+The registration page provides a form that allows for a user to enter an email, username, password, confirm the password, and submit this information to create their account. The app ensures that the email follows the email format of *a@b.c*, the username is not already in use, and the passwords are *at least* 5 characters and match each other. If all of these conditions are met, a new profile will be registered with the provided information. There is also a button that allows a user to navigate to the login page.
+
 ### Login Page
 ### Home Page 
 ### Profile Page
