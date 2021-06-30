@@ -26,7 +26,7 @@ Each post has the profile picture and username of the user that made the post on
 
 ### Profile Page
 ##### Header
-The header is the same as the header for the home page, except since this time we are on a profile instead of the home page, if the InTouch logo is clicked the logged in user is brought to their home page, and if their profile picture is clicked, the logged in user is brought to the top of their page if the profile page being displayed is their own, or they are brought to their own profile page, if the profile page being displayed belongs to another user.
+The header is the same as the header for the home page, except since this time we are on a profile instead of the home page, if the InTouch logo is clicked the logged in user is brought to the home page, and if their profile picture is clicked, the logged in user is brought to the top of the page if the profile page being displayed is their own, or they are brought to their own profile page, if the profile page being displayed belongs to another user.
 
 ##### Following Bar
 The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed.
@@ -36,6 +36,7 @@ The following bar is the same as the following bar for the home page, except it 
 ##### User Information
 
 ##### Followers Bar
+The followers bar is the same concept as the following bar, except it instead displays the users who follow the user whose profile page is being displayed.
 
 ##### Feed
 
