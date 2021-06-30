@@ -7,11 +7,11 @@ InTouch was built with the intent of providing a social media app that allows us
 ## Features
 ### Registration Page
 ### Login Page
-
+### Home Page 
+### Profile Page
 
 ## Technologies
 InTouch is a full stack web application that runs on the MERN stack. This means any data that the application stores is stored in a MongoDB database, the backend server is implemented using the Express framework, the runtime environment that the server runs on is Node.js, and the frontend is built using the React framework. The backend server adheres to RESTful API principles, and the frontend utilizes the React Context API to keep track of the currently logged in user. The application is deployed to the cloud using Heroku.
-
 
 ## How do I get InTouch?
 You can access the application using this url: https://in-touch-heroku.herokuapp.com/
