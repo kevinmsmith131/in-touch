@@ -33,13 +33,16 @@ The header is the same as the header for the home page, except since this time w
 The following bar is the same as the following bar for the home page, except it displays the followed users for the user whose profile page is currently being diplayed. If the user is not following any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
 
 ##### Profile Introduction
+Need to finish
 
 ##### User Information
+Need to finish
 
 ##### Followers Bar
 The followers bar is the same concept as the following bar, except it instead displays the users that follow the user whose profile page is being displayed. If the user is not followed by any other users, then a graphic is displayed in the following bar reporting that the user is not following any other users.
 
 ##### Feed
+Need to finish
 
 ## Technologies
 InTouch is a full stack web application that runs on the MERN stack. This means any data that the application stores is stored in a MongoDB database, the backend server is implemented using the Express framework, the runtime environment that the server runs on is Node.js, and the frontend is built using the React framework. The backend server adheres to RESTful API principles, and the frontend utilizes the React Context API to keep track of the currently logged in user. The application is deployed to the cloud using Heroku.
