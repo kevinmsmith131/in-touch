@@ -2,7 +2,7 @@
 A social media platform that allows users to post pictures with captions, like posts, and follow other users whose content they wish to view.
 
 ## Premise
-InTouch was built with the intent of providing a social media app that allows users to stay in touch with the people of their choosing, without anyone else being able to find their profile. The way that InTouch enforces this is by providing no way, such as searching, to find other users unless they personally provide the link to their profile. As long as a user chooses a unique username that no one is likely to guess, similar to the way one chooses a password, then only the people that they share their profile link with will be able to stay in touch with them.
+InTouch was built with the intent of providing a social media app that allows users to stay in touch with the people of their choosing, without anyone else being able to find their profile. The way that InTouch enforces this is by providing no way, such as searching, to find other users unless they personally provide the link to their profile. As long as a user chooses a unique username that no one is likely to guess, similar to the way one chooses a password, then only the people that they share their profile link with will be able to stay in touch with them. To minimize any negative interactions, users are only able to like the posts of other users, but not comment on them or message other users about them.
 
 ## Features
 ### Registration Page
@@ -21,8 +21,8 @@ The following bar displays all of the users that the logged in user is following
 ###### Make New Post Box
 At the top of the make new post box there is the logged in user's profile picture, which can be clicked to bring the user to their profile page, and there is an input field where the user can type the caption of the post. Below there are four buttons, one for attatching pictures to the post, and the rest are for updating the logged in user's profile picture, cover picture, and bio respectively. For the uploading a post picture, changing the profile picture, and changing the cover picture buttons, after the button is clicked there is a popup that allows a user to select an image to attach, and when the image is selected a preview of the image is shown in the make new post box, with a small icon in the top right corner of the image that allows the user to cancel the image upload. Finally the last button on the bottom allows the user to finalize and post everything they have entered, and this button accepts posts with only a caption and posts with only an image, but it does not allow for empty posts.
 
-
 ###### Existing Posts
+Each post has the profile picture and username of the user that made the post on the top, and these can both be clicked to be brought to that user's profile page. Directly below the length of time since the post was made is displayed in the format *0 seconds -> now, 10 seconds ago -> 10s, 10 minutes ago -> 10m, 10 hours ago -> 10h, 10 days ago -> 10d, 10 months ago -> 10mo, 10 years ago -> 10yr*. Below this is the caption of the post, if one was included, and the image of the post, if this was included. Below this is a button that allows a user to like or unlike the post, and the count of how many users have liked the post. As a side note users are allowed to like their own post. Finally, since posts that the logged in user makes will appear in their feed, if a post in the feed was made by the logged in user, there will be an icon with three horizontal dots in the top right corner of the post. When this icon is clicked, there will be a small pop up next to the icon that allows the user to either edit the caption of the post, or delete the post.
 
 ### Profile Page
 ##### Header
