@@ -26,7 +26,7 @@ const MakePost = ({ isHomepage }) => {
     
     if (file) {
       const data = new FormData();
-      const filename = '/post/' + Date.now() + file.name;
+      const filename = '/post/' + new Date().toISOString().replace(/[\/\\:]/g, "_") + file.name;
       data.append('name', filename);
       data.append('file', file);
       newPost.content = filename;
