@@ -81,12 +81,10 @@ const MakePost = ({ isHomepage }) => {
 
   const bio = async () => {
     try {
-      if (caption.current.value) {
-        const currUser = await axios.get('/users/', { params: { userId: user._id } });
-        const updatedUser = { ...currUser, bio: caption.current.value };
-        await axios.put(`/users/${user._id}`, updatedUser);
-        window.location.reload();
-      }
+      const currUser = await axios.get('/users/', { params: { userId: user._id } });
+      const updatedUser = { ...currUser, bio: caption.current.value };
+      await axios.put(`/users/${user._id}`, updatedUser);
+      window.location.reload();
     } catch(error) {
       logger.error(error);
     }
