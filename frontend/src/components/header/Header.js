@@ -24,9 +24,14 @@ const Header = ({ isHomepage, username }) => {
           </Link>
         </button>
       <div className="headerCenter">
-        <Link to ="/">
-          <span className="logo">InTouch</span>
-        </Link>
+        {isHomepage 
+          ? <a href="#top">
+              <span className="logo">InTouch</span>
+            </a>
+          : <Link to ="/">
+              <span className="logo">InTouch</span>
+            </Link>
+        }
       </div>
       <div className="headerRight">
         {(isHomepage || user.username !== username)
