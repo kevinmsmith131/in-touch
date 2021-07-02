@@ -52,7 +52,7 @@ The existing posts are the same as the existing posts from the home page, except
 InTouch is a full stack web application that runs on the MERN stack. This means any data that the application stores is stored in a MongoDB database, the backend server is implemented using the Express framework, the runtime environment that the server runs on is Node.js, and the frontend is built using the React framework. The backend server adheres to RESTful API principles, and the frontend utilizes the React Context API to keep track of the currently logged in user. The application is deployed to the cloud using Heroku.
 
 ## How do I get InTouch?
-You can access the application using this url: https://in-touch-heroku.herokuapp.com/
+You can access the application using this url: `https://in-touch-heroku.herokuapp.com/`
 
 If you would like to see what the app looks like for a user who is following and is followed by many other users, you can use the login sofie@gmail.com and password 123456. If you would like to log in as any of the other users, their logins are *their username in all lowercase*@gmail.com and their passwords are 123456. Feel free to use these accounts to try out following, unfollowing, liking, and whatever else you might want to do.
 
