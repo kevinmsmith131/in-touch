@@ -1,5 +1,5 @@
 # InTouch
-A social media platform that allows users to post pictures with captions, like posts, and follow other users whose content they wish to view.
+A social media platform that allows users to post pictures with captions, like posts, and follow other users whose content they wish to view. (No longer working because Heroku discontinued the free hosting tier)
 
 ## Premise
 InTouch was built with the intent of providing a social media app that allows users to stay in touch with the people of their choosing, without anyone else being able to find their profile. The way that InTouch enforces this is by providing no way, such as searching, to find other users unless they personally provide the link to their profile. As long as a user chooses a unique username that no one is likely to guess, similar to the way one chooses a password, then only the people that they share their profile link with will be able to stay in touch with them. This idea of making hard to guess usernames is the reason that differently cased usernames such as *User* and *user* are considered two different usernames. To minimize any negative interactions, users are only able to like the posts of other users, but not comment on them or message other users about them.
